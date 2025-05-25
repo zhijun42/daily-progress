@@ -1,3 +1,28 @@
+2025.5.24
+
+学习：
+
+- TiDB
+  - Learned about decorrelated subquery; Discussed about a SQL example to see how TiDB decides whether a query can be successfully decorrelated, and how that affects the JOIN type (`HashJoin` or `CorrelatedNestedLoopJoin`) and the number of RPCs between TiDB and TiKV. 
+- Computer Networking: Started reading the book [Computer Networking: a Top Down Approach](https://gaia.cs.umass.edu/kurose_ross/index.php)
+  -  Learned about the nodal delay types happening at a node in the network: nodal processing delay, queuing delay (this reminds a bit of the queueing theory that I briefly studied at a graduate statistics course ), transmission delay (the speed that packets get pushed out of the queue, coule be causing packet loss), propogation delay (this is where the speed of signal/information is bounded by the speed of light). 
+  - Learned about the difference between circuit switching and packet switching. I love the analogy of restaurants that require reversations versus those prefer walk-ins.
+  - Learned about ISPs at different hierarchy and how pricing/cost can affect how a node wants to connect the another node (could be through the top-tier ISP, could be directly peer-to-peer)
+  - Briefly learned about network security topics like (DDoS attack, packet sniffing, zero trust, etc). I will keep these topics in mind when reading through the book.
+
+阅读：
+
+- 今天没有阅读，只是在微信读书上随意浏览了一下用户书评
+
+开心感激：
+
+- 这么多年来，我一直都想好好地学习一番Networking相关内容，尤其是在工作中对于AWS VPC Ingress/Egress等话题感到困惑无助时，我意识到自己的计算机基础很差。现在，我终于行动了起来。其实理论上来说，自从我去年辞职后我就有充足的时间来学习，但我却迟迟没有开启这项内容，直到今天我终于感到厌倦，无法忍受拖延了
+- 和GPT讨论后明确了用英语沟通和讨论daily report如何能够带来更多启发和思考，舒畅了许多
+- 自录了视频讨论了学习与生活，感到自己清醒了一些。傍晚到江边跑步和散步，思考调整自己的情绪
+- 老爸老妈用心烹饪的老鸭汤非常好喝
+
+
+
 2025.5.23
 
 学习：TiDB源代码
