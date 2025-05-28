@@ -1,4 +1,42 @@
-2025.5.2.5
+2025.5.27
+
+学习 CSAPP
+
+- Finished the phase 4 and 5 of the Bomb Lab assignment
+- Deeply studied an example and gained much deeper understarnding - The function call chain is `phase_6` -> `read_six_numbers` -> `stdio.sscanf`. The `sscanf`  function takes 8 arguments. I see how the last two arguments are stored at the top of stack frame, and they are actually memory addresses pointing at objects in the stack frame of previous funciton caller via instruction `mov %rsp, %rsi`, so that once `read_six_numbers` and `stdio.sscanf` finish, we can go back to the stack of function `phase_6` and find the 6 numbers just produced by the function call.
+- Learned some common tricks like `shr $0x1f,%ecx` (test if the value is negative), `xor %eax, %eax` (set to zero).
+- Now I have deeper understanding that each memory slot is identified by a 64-bit address and holds one byte of data. Of course this is pretty fundamental but I didn't fully capture the idea.
+
+阅读：
+
+- 《After the falls》：了解《早安，怪物》作者Catherine Gildiner的青年成长故事
+
+开心感激
+
+- 学习assembly language非常专注，投入五个半小时
+
+
+
+2025.5.26
+
+学习 Computer Networking
+
+- Learned about peer-to-peer connection and BitTorrent protocol.  It's interesting to calculate the average time of receiving files and compare the performance against client-server model. It's also interesting to see how P2P simulates human community - incentize contributions and punish freeriders
+- Learned basis about video streaming, `nslookup` etc.
+- Learned the motivation behind Content Delivery Networks and how CDN saves money and improves user experience. Briefly looked at Netflix Open Connect
+- Learned that direct TCP connection doesn't mean physically directed, but rather there's no extra layer of intermediary like proxy/relay.
+
+阅读：
+
+- 《早安，怪物》继续重读Danny的故事
+
+开心感激：
+
+- peer-to-peer file sending非常有意思！
+
+
+
+2025.5.25
 
 学习 Computer Networking
 
@@ -11,7 +49,7 @@
 开心感激：
 
 - 《早安，怪物》这本书读完了 I enjoyed every minute reading it!
-- 在Bilibili上看到视频讨论了一个法律案件：男女双方自主发生了两次性行为，并在事后保持聊天，女方在父母的要求选择报警，最终法院认定男方犯强奸罪而入狱三年。这个案件值得思考，女方「事前同意但事后反悔」的行为让人思考强奸罪行的定义和边界是什么，弱势群体在舆论上拥有的优势，中国社会年轻人的婚恋观以及长期的出生率会如何受到影响
+- 在Bilibili上看到视频讨论了一个法律案件：男女双方自主发生了两次性行为，并在事后保持聊天，女方在父母的要求选择报警，最终法院认定男方犯强奸罪而入狱三年。这个案件值得思考，女方「事前同意但事后反悔」的行为让人思考强奸罪行的定义和边界是什么，弱势群体在舆论上拥有的优势，中国社会年轻人的婚恋观以及长期的出生率会如何受到影响。
 
 
 
@@ -36,7 +74,7 @@
 - 这么多年来，我一直都想好好地学习一番Networking相关内容，尤其是在工作中对于AWS VPC Ingress/Egress等话题感到困惑无助时，我意识到自己的计算机基础很差。现在，我终于行动了起来。其实理论上来说，自从我去年辞职后我就有充足的时间来学习，但我却迟迟没有开启这项内容，直到今天我终于感到厌倦，无法忍受拖延了
 - 和GPT讨论后明确了用英语沟通和讨论daily report如何能够带来更多启发和思考，舒畅了许多
 - 自录了视频讨论了学习与生活，感到自己清醒了一些。傍晚到江边跑步和散步，思考调整自己的情绪
-- 老爸老妈用心烹饪的老鸭汤非常好喝
+- 老爸老妈用心烹饪的鸭汤非常好喝
 
 
 
