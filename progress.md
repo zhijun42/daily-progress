@@ -1,3 +1,54 @@
+2025.5.28
+
+学习 CSAPP
+
+- Learned how struct and union work in C language. Union is an interesting design - I like the example of using union to represent a tree node to save memory usage:
+
+  - ```c
+    typedef enum { N_LEAF, N_INTERNAL } nodetype_t;
+    
+    struct node_t {
+    		nodetype_t type;
+    		union {
+    				struct {
+    							struct node_t *left;
+    							struct node_t *right;
+    				} internal;
+    				double data[2];
+    		} info;
+    };
+    ```
+
+- Learned the arithmetic opeartion of pointer object. Say p is a pointer of type `char *` having value p, then the expression `(int *) p+7`  computes $$p + 28$$, while `(int *) (p+7)` computes $$p + 7$$.
+
+- Spent a lot of time on Bomb Lab's phase 6 (last one). I didn't realize I should use GDB and instead dry-ran the entire process by writing down the stack frame and keeping track of all relevant registers on my scratch paper and in my head (which is really hard). I finally figured out all the logical blocks in this phase - reading 6 numbers provided by the user, ensuring they are different from each other and all between 1 and 6 (which means they have to be from 1 to 6), putting the next pointers of a linked-list object inside the stack frame and then reversing the linked-list, and finally ensuring that the values in the linked-list are ordered desc. With GDB I was able to look at the values inside the linked-list and finally solved the problem.
+
+- Finally set up GDB by spinning up an AWS EC2 micro Ubuntu machine. I learned the basics of GDB: Add breakpoints (`break *0x4011fb`), show all variables, check registers, and examine memory (`x/40wx 0x6032d0`). This is super fun!
+  - I tried to use GDB on my M2 Macbook Air but it simply won't work due to architecture mismatch. I only realized that after trying a bunch of stuff: I tried to codesign the corresponding certificate to bypass Apple's System Integrity Protection; I tired  `lldb` and a Ubuntu Docker container.
+
+开心感激：
+
+- 做Bomb Lab非常专注，投入了七个半小时，题目设计和使用GDB都非常有趣
+
+
+
+2025.5.28
+
+学习 CSAPP
+
+- Learned how an array consumes a few consecutive blocks of memory and we can simply use the starting address of the array plus the offset (element index multipled by the size of the element type) to locate any element inside
+
+阅读：
+
+- 白先勇的《树犹如此》笔触真挚，故事感人。第一个故事是他和友人王国祥相知相识的经历，他陪伴患上贫血症的友直至生命的最后；第二个故事是他的三姐在去到美国逃离战争时患上了精神分裂，由此回到了童年时代的人格，用善良、真挚和孩童的稚气去关心和打动身边的人。
+
+开心感激：
+
+- 晚上自录了视频，相当全面地梳理了生活近况，对于接下来有了更清晰的目标
+- 老爸陪着打了五局羽毛球（一直以来他的极限都只是四局），双方发挥表现都不错
+
+
+
 2025.5.27
 
 学习 CSAPP
@@ -5,7 +56,7 @@
 - Finished the phase 4 and 5 of the Bomb Lab assignment
 - Deeply studied an example and gained much deeper understarnding - The function call chain is `phase_6` -> `read_six_numbers` -> `stdio.sscanf`. The `sscanf`  function takes 8 arguments. I see how the last two arguments are stored at the top of stack frame, and they are actually memory addresses pointing at objects in the stack frame of previous funciton caller via instruction `mov %rsp, %rsi`, so that once `read_six_numbers` and `stdio.sscanf` finish, we can go back to the stack of function `phase_6` and find the 6 numbers just produced by the function call.
 - Learned some common tricks like `shr $0x1f,%ecx` (test if the value is negative), `xor %eax, %eax` (set to zero).
-- Now I have deeper understanding that each memory slot is identified by a 64-bit address and holds one byte of data. Of course this is pretty fundamental but I didn't fully capture the idea.
+- Now I have deeper understanding that each memory slot is identified by a 64-bit address (which is why each pointer object consumes 8 bytes) and holds one byte of data. Of course this is pretty fundamental but I didn't fully capture the idea.
 
 阅读：
 
@@ -13,7 +64,7 @@
 
 开心感激
 
-- 学习assembly language非常专注，投入五个半小时
+- 学习汇编语言非常专注，投入五个半小时
 
 
 
