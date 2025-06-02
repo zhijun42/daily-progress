@@ -1,4 +1,36 @@
-2025.5.28
+2025.5.31 + 2025.6.1
+
+创作：
+
+- 完成了文章《打打基础 | 从翻转链表到寄存器、汇编与内存》的构思和写作
+- 将今年二月份在领英上写的文章《Inside the 73-Hour Roblox Outage: A Deep Dive into Hidden Database Failures》加上中文序言，搬运到了中文博客平台上
+
+
+
+2025.5.30
+
+学习 CSAPP
+
+- Learned about machine code and amazed by how much information is embedded in hex numbers.
+
+  > **Assembly:** mov %edx, %eax
+  >
+  > **Machine code**: 89 d0
+  >
+  > **Opcode breakdown:**
+  >
+  > - 89: Opcode for MOV r/m32, r32
+  > - d0: ModR/M → 11 010 000 → 11 means register-direct, 010 means source %edx, 000 means dest %eax
+
+- Learned some basics: `movzbl (%rbx,%rax,1),%ecx` and `movb (%rbx,%rax,1), %cl` are different; PIE (position-independent executable) allocates fixed memory address (good for educating but not security) to objects; virtual memory allows different programs to use the same address like `0x6032d0`; stack frame padding before calling a function
+
+- Found the secret phase (the last quizz) of the Bomb Lab, and solved it (a pretty simple recursion)
+
+- Got more proficient using GDB, especially examing memory and adding breakpoints to navigate through the instructions.
+
+
+
+2025.5.29
 
 学习 CSAPP
 
