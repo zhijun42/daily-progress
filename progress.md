@@ -1,5 +1,25 @@
 ## 2025年6月
 
+2025.6.2
+
+学习  Networking
+
+- Learned about the reasoning behind sequence number for reliable data stream, and this really reminds me of the term number in the Raft consensus algorithm - perhaps designing a timestamp is highly intuitive to our humans when trying to model real-world events (in the case of networking, the event is sending a particualr packet of data).
+- Learned the Go-Back-N and Selective Repeat protocols, and played with the interactive animation where I could kick off sending packets, pause to kill arbitrary packet (sent from server) and acknowledgement response (from receiver), and examine the buffer window in the sender. This is super fun!
+- Learned abou the TCP segment structure and how round-trip time is dynamically updated to adapt to fluctuating network conditions.
+
+阅读：
+
+- 《早安，怪物》重新读Laura的故事
+
+开心感激：
+
+- 老妈像往常那样一大早就出门买菜买鱼买水果，拎着一个巨大的袋子和几个中小尺寸的回到家，她是如何用迷你电瓶车采购了这么大量的物资，这一直是个谜
+- 感谢好友小胡推荐的视频，看到了一位优秀的父亲的培养孩子的理念和模式，受到了启发
+- 感谢理发师为我剪了干净清爽的发型
+- 感谢世界上有雷军这样的榜样，纯粹地自我驱动追求理想
+- 小唐再次表示受到了我的激励和鼓励，近期频繁地锻炼自己去和不喜欢的人进行平静的沟通，减少了很多内耗
+
 
 
 ## 2025年5月
@@ -10,6 +30,11 @@
 
 - 完成了文章《打打基础 | 从翻转链表到寄存器、汇编与内存》的构思和写作
 - 将今年二月份在领英上写的文章《Inside the 73-Hour Roblox Outage: A Deep Dive into Hidden Database Failures》加上中文序言，搬运到了中文博客平台上
+
+开心感谢：
+
+- 感谢好友晓雯赠书《建筑的复杂性与矛盾性》
+- 我突然明白了为什么大学本科期间如此封闭狭隘，更加理解了我的行为模式和个人成长
 
 
 
