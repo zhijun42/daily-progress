@@ -1,5 +1,52 @@
 ## 2025年6月
 
+2025.6.4
+
+学习
+
+- C++
+  - Learned the advantages of modules introduced in C++ 20 and disadvantages (I used to think this is a good feature in C/C++) in header files: repetive parsing to blow up compilation time, order dependencies (be careful of how you do `#include`), inconsistencies (defining the same type/function in two seperate files) and transitivity (a header file needs to consume a lot of other header files). The author tested that compiling a simple helloWorld file using `import std`  is 10 times faster than using `#include <iostream>`, even though the `std` module contains the whole standard library, more than 10 times of information in the `iostream` header.
+    - I realized that the adoption of modules has been pretty slow and none of the open source databases have migrated to it.
+  - Learned more about the philosophy of Resource Acquisition is Initialization, and how using raw `new` and `delete` can cause disaters like double delete, memory leaks and use after delete. Learned destructors, smart pointer `std::unique_ptr` and Return Value Optimization.
+    - Looks like RAII can also be used to manage mutex, which seems promising in avoding deadlocks. I'd like to learn more later.
+  - Learned class hierachy, interface inheritance and implementation inheritance, but I still don't feel comfortable enough with classes in C++ and defining methods.
+
+- CS144 lab checkpoint 0
+  - Still struggled reading the source code. Learned more C++ basis during reading like file descriptor, iovec, size_t and string_view.
+- Networking book
+  - Learned that modern TCP implementation uses Selective Repeat protocol. It uses only one timer to keep track of the oldest unacknowledged segment, instead of one timer for each segment. And it has Fast Retransmit (detecting 3 duplicates ACKs). I also briefly learned how TCP uses a ring buffer structure to implement, which reminds me of the ring in the Consistent Hashing algorithm.
+
+阅读：
+
+- 用1个小时来继续梳理《早安，怪物》中Laura的心路历程，我希望能够尽快写出文章来表达我的思考感悟。
+
+开心感激：
+
+- 在下午的一个瞬间感受到这样的学习生活非常充实，感到很幸福。
+
+
+
+2025.6.3
+
+学习
+
+- Started doing the labs in [Stanford CS 144: Introduction to Computer Networking](https://cs144.github.io/). I decided to just do labs and skip the course for now because I'm already reading *Computer Networking: a Top Down Approach*. This might change though, since watching course videos could be helpful in providing different perspectives and raw materials for my brain.
+  - Read the checkpoint 0 instructions. Set up environments to run Ubuntu Docker container.
+  - Tried stealing the header file `<linux/if_packet.h>` from Ubuntu into my local filesystem to help with IDE resolving symbols but then realized it's not worthy.
+  - Had much difficulty reading the util source files in C++.
+- Started learning C++ by reading *[A Tour of C++ (Third edition)](https://www.stroustrup.com/tour3.html)* by Bjarne Stroustrup, the creator of C++
+  - Learned the differences between reference and pointer. Learned basic types.
+
+阅读：
+
+- 用1小时50分继续重新阅读《早安，怪物》中Laura的故事，详细梳理她放下心理戒备的治疗过程。
+
+开心感激：
+
+- 晚上八点多和老爸去一家平时少去的球馆打羽毛球，我们几乎一直都是在下午打球。这次主动做出改变很不错，宽敞的大球馆里很是热闹，有许多羽毛球俱乐部的成员在这里活动，还有不少相对业余但自得其乐的年轻人，整个环境和氛围让人愉快，让我产生了“好好学习一下基本功，锻炼一下技术，到时候可以选择适合自己的俱乐部来结识一些水平相近的球友，想想就很兴奋啊”的念头，同时也让我确定Tim Ferriss的理念很正确：试着去对生活中习以为常的行为和模式做出调整和改变，会得到很多启发和能量。这种思想对于我这种有顽固牢靠的个人体系和行为模式的人来说帮助很大，我以往总是认为自己已经做得不错了——长期坚持做时间统计和总结复盘，审视自己的生活，珍惜时间——但却依旧没有让自己觉得足够满意和认可。那么，为什么不尝试调整体系（例如不要再过度反思）呢？The system that got me here today can probably get me only this far. I need something else to keep moing.
+
+
+
 2025.6.2
 
 学习  Networking
