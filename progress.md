@@ -1,5 +1,33 @@
 ## 2025年6月
 
+2025.6.5
+
+学习：
+
+- Briefly learned about socket programing in C++.
+- Read a few chapters of the open source book *Everything curl* written by the creator of cURL, Daniel Stenberg. It's astonishing to see how widely curl is used all around the world, especially in devices like Nitendo Switch, vehicles, printer, audio and video equipment, and so many more! I'm much more interested in curl now.
+- I seem to struggle a lot with the fundamentals. Today I finally realized that an HTTP request needs the public IP address of the server (I thought we always need the combination of both public and private IPs) and the Host. A simple command  `curl http://cs144.keithw.org/hello ` would actually automatically add the Host header for us.
+  - I've long realized a big flaw in my recognition pattern is that I always prefer going deep into certain material to focus on a narrow topic, but barely have any understanding on the basic stuff. I need to work on this.
+
+创作：
+
+- 整理《早安，怪物》中关于Laura的故事素材，我已经把书中的这个章节阅读过两遍，并且对照着英文原文进行补充。我有很多感受感悟想要表达，却又不知从何说起，于是只能先在草稿本上不受限地写下所有想法，我想不出该如何将它们串联起来。我想到了先流水账式地简单写下Laura的经历，她的各种心理症状，以及可以采取的治疗措施。
+
+  我意识到，我很不擅长讲故事，无法做到依照时间线转述书中内容，我所擅长的是用bullet point的形式来展示自己的思考。整体而言，我的写作十分内耗，每写下一句话都要反复斟酌打磨，我既不想写成网络营销账号那样博人眼球的低智力形式，又不想显得过于深沉严肃（我意识到轻盈是我的追求，让人轻松愉悦地阅读，并从中获得启发）；我既想要展示自己的思考深度和认知高度，又不想显摆自己，不想流露出说教的爹味儿或者对于女性群体的不尊重。
+
+  简单来说，我对自己的要求很高，而我却还不具备相应的写作能力（尽管我从2018年起就在坚持写日记和复盘），我又很多批判的不愿同流合污的风格，但又没能培养出属于自己的、能够心安理得地接受和同处的文字风格。目前的我，要不断打磨斟酌每段话才能不这么嫌弃自己，创作的速度可想而知有多慢——最终花费四个多小时写了两千字。另外，完成作品后起标题也是一件相当费时间的事情，又一次地，我希望构想出不落俗套、不哄骗诱导读者的精简题目，但似乎这往往需要灵光乍现的瞬间——我明白的，缺乏灵气，这是我的文字缺陷。
+
+  无论如何，我会坚持写作，坚持分享。我要将盘踞在脑中的想法表达出来。
+
+开心感激：
+
+- 和GPT讨论每日汇报，再次强调了test the walls的重要性，希望能够借此来调整我的个人体系；此外，我将CSAPP和CS144课程的deadline整合到我个人的日历中，以此来推动自己来完成更多任务，战胜自由散漫的本性。
+- 终于完成了写作！《早安，怪物》给我带来了巨大的震撼，我对自己发誓一定要为此进行创作表达，不要让它沦落为又一本「读完之后觉得思绪澎湃，但过几天又归于平静」的作品，不要浪费美好的事物，也不要辜负自己的情绪和思考感悟。
+- 在微信读书上读《早安，怪物》时，经常能看到一位用户分享某段翻译的英文原文，指出由于国内审核而在翻译上做出的妥协。我向这位用户发消息表达了感谢，得到回复“谢谢你告诉我~”。我喜欢这种传播善意和表达感恩的细小举动，不管有没有收到反馈，我都希望今后可以坚持做下去。
+- 在B站上看了「谁是阿尖」的亚马逊雨林旅行视频，被她的旺盛生命力感染。见到了Leticia这个哥伦比亚、巴西和秘鲁三国交界的小镇，见到了阿尖和当地原住民的友好相处。我确认了这是我渴望的旅行风格——学习当地语言（西班牙语）和当地居民产生连接，感谢阿尖提供了这样的优质体验。
+
+
+
 2025.6.4
 
 学习
