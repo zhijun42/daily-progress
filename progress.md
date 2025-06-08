@@ -1,5 +1,103 @@
 ## 2025年6月
 
+2025.6.7
+
+学习 CS144
+
+- Spent 4 hours (damn I'm so patient!!) just trying to set up my working environment. I just wanna achieve two things: [1] I can build and run the C++ code of the course in the Linux container; [2] I can have syntax highlight, auto complete and use the beautiful debugger UI in the CLion IDE on my Macbook - I've already accepted the unfortunate truth that this codebase can't be built and run on MacOS, because I don't have stuff like the  `<linux/if_packet.h>` header).
+
+  - I realized **CLion’s Docker toolchain is fundamentally flawed for long-lived builds/debugging**, since it spins up short-lived containers and doesn't allow enough time to receive reply from CMake, thus throwing error `CMake File API: /app/build: no reply dir found`.
+    - Furthermore, I'm convinced that there's no value to use Jetbrains IDEs' Docker related features since we can simply run all the Docker CLI commands ourselves.
+  - I tried CLion's **Remote GDB Server** and realized this feature is not meant for my use case - I already have the gdbserver running in my Linux container and simply just need to talk to it.
+  - Tried CLion's Remote Debug feature instead and it worked! I set up SSH in my Linux container and the correct path mapping between Docker and my local directory. Now I can add as many breakpoints as I like!
+  - Much trouble is caused by the fact that my Macbook is using ARM64 chip. The architectures of `gdb` and `gdbserver` have to match. I had been using a x86-64 Ubuntu container inherited from my CSAPP course and thus there's a mismatch. Now that I think about it - I should have used ARM64 Linux container for this couse instead, and I had forgot the reason I use x86-64 container is because the `bomb` binary file given to us was built for x86-64.
+    - This is a **great lesson for first principle thinking**! I should have questioned the assumption - why did I have to use `docker build --platform=linux/amd64` in the first place?
+
+- Learned some useful tricks:
+
+  - With `gdbserver :1234 executable` running, I can't do Ctrl+C to terminate it. I learned that we can use `kill` command with various signals like `kill -9 pid` to terminate it:
+
+    - SIGTERM (signal 15): “Please shut down cleanly”
+    - SIGKILL (signal 9): “Die immediately”
+    - SIGINT (signal 2): This is the Ctrl+C I was trying
+
+  - I ran into a very unhelpful `"Unknown Error"` message on CLion and I learned that I can do  `/Applications/CLion.app/Contents/MacOS/clion` to show the full tracebacks.
+
+    - ```
+      Execution error without description  
+      java.lang.AssertionError  
+          at com.jetbrains.cidr.cpp.execution.gdbserver.remote.RemoteGdbServerLauncher.createGdbServerProcess(RemoteGdbServerLauncher.java:86)
+      ```
+
+- Almost finished the checkpoint 0's in-memory bytestream implementation - it works but not optimized. I'm still very unfamiliar with C++ language itself. I wanted to create a performance profiler to measure the durations taken calling certain functions so that I could identify the bottleneck of the program, but this task turned out to be extremely difficult for me. I ended up having to use a bunch of ugly workarounds to get going and finally got to the bottleneck. I'm hoping to revisit this profiler once I'm better with C++.
+
+  - ```c++
+    class TimerAccumulator {
+    public:
+        TimerAccumulator();
+    
+        struct Stat {
+            std::chrono::microseconds total_duration{0};
+            size_t call_count = 0;
+        };
+    
+        template <typename Func, typename... Args>
+        auto measure_time(const std::string& label, Func&& func, Args&&... args)
+          -> decltype(std::invoke(std::forward<Func>(func), std::forward<Args>(args)...)) {
+            using namespace std::chrono;
+            auto start = high_resolution_clock::now();
+    				// How to really adapt to void functions???
+            auto res = std::invoke(std::forward<Func>(func), std::forward<Args>(args)...);
+    
+            auto end = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(end - start);
+            data_[label].total_duration += duration;
+            data_[label].call_count++;
+            return res;
+        }
+    
+        void report() const;
+    
+    private:
+        std::unordered_map<std::string, Stat> data_;
+    };
+    ```
+
+开心感激：
+
+- 上午擦拭了卫生间前镜子上的水雾，让人心情愉悦，喜欢这种干干净净的感觉。
+- 读到了一篇帖子谈论ADHD有时会注意力过度集中，例如在逛Wikipedia的时候从一个话题引申/跳转到另一个话题，高度沉浸在高质量信息和知识获取（有时候是一种幻觉）之中，后续还会把一大堆资料加入到收藏夹中（显然是不会再次阅读了）。虽然我不是ADHD, 但我意识到我有类似的hyperfocus问题，给生活造成了诸多困扰。这篇帖子给了我新的视角来改善体系，感谢！
+- 看法网女单决赛Sabalenka和Gauff的对决，非常精彩！
+
+
+
+2025.6.6
+
+学习：
+
+- CS144
+  - Continued playing around with socket programing in C++ and finished the `webget` program implementing a simple HTTP client. The util source code in CS144 actually wraps around the C++ standard objects like  `addrinfo`, `socket`, and I find it pretty annoying that I had to adapt to the util code. I understand that the course instructors are trying to make life easier for us but I just don't like  learning another set of APIs - I'd prefer digging into the original objects, not the wrapper.
+  - Ran into a bunch of boring problems and got really annoyed:
+    - Tried `std::format` but it didn't work. Spent some time configuring `fmt::format` and finally got it working. It's so frustrating that doing something simple like string formating is so fucked-up in C++.
+    - All of a sudden the Clang on my MacOS stops pointing to MacOSX14.2.SDK, and starts pointing to MacOSX15.SDK, which I don't have. I don't know what caused the change.
+    - IDE CLion crashed and then the project info was lost. Now suddenly CLion can't even recognize C++ keyword `constexpr`, which clearly suggest that it's using standards behind C++ 20. I really need to properly set up my working environment tomorrow to handle this situation of running Linux code from MacOS.
+- CSAPP
+  - Learned how memory and disk are connected to the CPU chip via the I/O bus. Learned how seek time (this is why sequencial I/O is faster, although the gap between sequencial and random I/O have been narrowing) and rotational latency in the spining disk make up the data fetch time.
+  - Learned how temporal and spatial locality of reference can boost the program performance.
+  - Once again realized that CPU instructions themselves are also bytes of data, just like any user data we have - I need to think more about this fact.
+
+阅读：
+
+- 毛姆《总结》：他由衷地希望年轻时能够有品味优秀、判断力强的人来指导阅读，因为事后来看他在很多没什么价值的书上浪费了太多时间（我觉得我也有相同的困境，深层渴望是能够尽可能地让自己的人生浸泡在高质量启迪素材之中）；他认为自己是后天打造出来的作家，欠缺天赋，但终于还是接受了自己的大脑并不如他所期盼般强大。
+
+开心感激：
+
+- 下午在和老爸打羽毛球的时候，在每局结束后的间隙里（采用了start small的原则）看视频学习了一下羽毛球后场接球动作的正确脚步，我终于行动起来了！我已经喊了无数遍“我要系统学习羽毛球”。
+- 晚上自录视频40分钟，聊了许多关于写作表达、《早安，怪物》创作灵感、加大强度、个人体系等话题，非常舒畅。
+- 晚上看了法网男单半决赛中Carlos Alcaraz和Lorenzo Musetti的对决，非常精彩！好喜欢看网球啊！
+
+
+
 2025.6.5
 
 学习：
@@ -58,7 +156,7 @@
 
 学习
 
-- Started doing the labs in [Stanford CS 144: Introduction to Computer Networking](https://cs144.github.io/). I decided to just do labs and skip the course for now because I'm already reading *Computer Networking: a Top Down Approach*. This might change though, since watching course videos could be helpful in providing different perspectives and raw materials for my brain.
+- Started doing the labs in [Stanford CS 144: Introduction to Computer Networking](https://cs144.github.io/). I decided to just do the labs and skip the course for now because I'm already reading *Computer Networking: a Top Down Approach*. This might change though, since watching course videos could be helpful in providing different perspectives and raw materials for my brain.
   - Read the checkpoint 0 instructions. Set up environments to run Ubuntu Docker container.
   - Tried stealing the header file `<linux/if_packet.h>` from Ubuntu into my local filesystem to help with IDE resolving symbols but then realized it's not worthy.
   - Had much difficulty reading the util source files in C++.
