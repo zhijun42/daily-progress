@@ -1,5 +1,44 @@
 ## 2025年6月
 
+2025.6.9
+
+创作：
+
+- 完成了技术写作《C/Python/Go示例 | Socket Programing与RPC》，我很满意。
+
+阅读：
+
+- 《树犹如此》中的几篇随笔：从小在桂林生活的白先勇时隔五十六年重返家乡的心路；九岁大的年纪在上海对一派繁华留下了深刻的印象；重返南京参观中山陵和大屠杀纪念馆，为中国人没能充分地在战后牢记苦难而感到痛心，比起同样遭受的犹太人要差远了：
+
+  - > 这几十年来犹太人一直锲而不舍，把纳粹罪行的证据，点点滴滴，全部搜集存档，有关这场浩劫的书籍、电影、戏剧，林林总总，可谓汗牛充栋，铁证如山，而且不断向全世界公布。犹太人不容许他们的后代子孙忘却这场灭种的悲剧，更不容许德国人翻案窜史。直到今天他们还在追缉纳粹战犯，每年集中营幸存者都会约同从全世界回到以色列追思被纳粹残害的亲友。
+
+
+开心感激：
+
+- 创作文章的时候非常专注投入——从早上8点45开始写，除去中途吃早饭和午饭休息的时间（大概一个半小时）都在专心写作，等到终于完成并发布到社交媒体，喘息欣赏之际，抬头一看居然已经是下午四点了——久违地感到了很爽很畅快（之前写作的时候满是纠结和拧巴，总是一边写一边埋怨嫌弃自己的文字），不时有灵光乍现的段落和创意。我明确感受到在完成写作后我对于socket programming以及networking这个话题有了更深更扎实的理解。
+- 在B站上看阿尖的三个视频：在San Diego的海上划船Kayak近距离观赏海狮；入境Tijuana欣赏精致的手工制品，参观美墨边境墙；和哥伦比亚的原住民一起生活，感受与大自然的充分融合。我很喜欢这样的分享，喜欢她对世界的善意和能量热情。
+
+
+
+### week 23
+
+
+
+2025.6.8
+
+学习：
+
+- Learned more about socket programming - finally realized that the socket APIs are just making system calls (and we can look up these in the [Linux manual](https://man7.org/linux/man-pages/man2/socket.2.html)). Socker programming in all languages (even including low-level one like C) are just making such syscalls. Once I know something is just a wrapper around another, I get more comfortable with it.
+- Played around with the socket programming echo servers written in C/Python/Go. Used Unix `netcat` to act as simple client to interact with them.
+- Learned Unix domain socket and Docker is using `/var/run/docker.sock` as the socket.
+- Built a mini RPC program in Go on top of the socket APIs and gained deeper understanding of RPC now.
+
+开心感激：
+
+- 感谢Sinner和Alcaraz的法网男单决赛！耗时五个半小时，创造法网记录——我为了早睡早起只看了前两盘，当时阿卡大比分零比二落后，我本以为这场比赛就要这么失去悬念地结束了，没想到最后阿卡逆转夺冠了！辛纳在第四盘时局分5:3领先，并且40:0手握三个夺冠点，距离冠军只差一分，阿卡却强悍地实现了翻盘，这可真是史诗级的伟大对决呀！我从阿卡身上受到了很大的激励和鼓舞，永远专注眼前。另外，阿卡在边裁判定辛纳的球出界后，主动指出那是一记ACE球，于是主裁判修改比分让辛纳得到这一分。我很欣赏认可这种高度的坦诚大度，我在生活中也是这么实践的，因此我能够明白阿卡的想法。
+
+
+
 2025.6.7
 
 学习 CS144
