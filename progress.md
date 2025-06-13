@@ -1,5 +1,68 @@
 ## 2025年6月
 
+2025.6.12
+
+学习 CSAPP
+
+- Got pretty hands on with handcrafting assembly code, using `gcc` to compile and them extracting the raw machine code bytes from it via `objdump` (I also tried using Python's `pwntool` to automate this workflow but just couldn't successfully install it - I need to learn how to debug issues around installation, a very useful technique).
+- Learned how to inject my own code into a binary file when the stack is executable and ASLR is turned on to randomize the address of stack frame. Tried leaking memory during run-time.
+- Finished the phase 2 - 4 of the attacklab, struggled with the last phase for a few hours and just couldn't craft a nicely arranged chains of ROP (return-oriented programming, this is pretty cool!!) gadgets along with raw data bytes.
+- Once again solidified my belief that bytes are just numbers and it's our responsibility to interpret them. Machine code instructions are also just raw bytes. Now I got more familiar with some commonly seen instructions: `48 89 e0` is `movq %rsp,%rax` ; `48 89 e7` is `movq %rsp,%rdi`; `58` is `popq %rax`, `5f` is `popq %rdi`; and most importantly `c3` is `ret`!
+- Learned about functional nop instructions like `20 c0` (`andb %al,%al` ) that extend the regular 90 `nop` instructions to enhance security.
+
+阅读：
+
+- 《早安，怪物》花了1小时42分又重新读了Danny的故事，有了更多的思考感悟，为本周的写作做准备。
+
+开心感激：
+
+- 在attacklab上专注投入了8小时21分（虽然执行和消化知识的效率比较低），有频繁的心流体验。
+
+
+
+2025.6.11
+
+学习 CSAPP
+
+- Turned on autocomplete on my zsh and bash terminals. I should have done this since a few years ago - I should really pay attention to my productivity around coding and examine my workflows more closely.
+- Learned more about buffer overflow. I could see that the canary value is randomized every time and it's really hard to bypass it. I learned to do stuff in GDB like `set {unsigned long}0x7fffffffe378 = 0x401176` and `set $rax = 0x1234` to overwrite the registers and memory, and to see how segmentation fault can be manually triggered - the more I play around with GDB, the more I appreciate how powerful it is.
+- Continued reading the source code of attacklab and struggled a lot with how the program dealt with user inputs. Whatever I typed in the stdin would trigger segfault. I gave up and used file as input instead. I really should have used file inputs from the very beginning. Even if I could somehow get my manual stdin to workaround the segfault, I wouldn't be able to solve the attacklab because there're just so many hex bytes that we can't type simply by using the keyboard (how can you possibly type `\xc3`?). Once again I made the mistake of being too headstrong and didn't pause a bit to look at the big picture.
+- Finally finished the first phase - 4 to go.
+
+阅读：
+
+- 《树犹如此》：继续分享和《现代文学》杂志有关的故事，原来三毛也是因为在此投稿被刊登了才走上了作家之路——我已然无数次地见到了正反馈的力量。
+
+开心感激：
+
+- 仔细研究并训练健康合理的用蓝牙键盘打字的方式来避免腱鞘炎，还学了些肌肉松解动作，着手解决问题的感觉很棒。
+- 在小红书上读博主「半城太菜」思考感悟网球的文字，被这样轻盈舒适、让人愿意亲近的创作而打动，我进一步意识到了自己的问题，今后会努力训练让自己的文字朝此靠近。
+- 小唐成功通过了公司内部转岗面试，终于要开始做心心念念已久的智能康复产品经理了。她说，我给她写的那份“不要考虑什么五年专家这件事”的长回复对于激励她赶快开始行动很有帮助。
+- 今天台风天下大雨，在房间里听着雨声专心学习时感到无比幸福，我从小就很喜欢雨天。
+- 老妈为了应对明天可能没菜可买，晚上出门到街上找寻物资，回家路上还被阵雨打湿了。
+
+
+
+2025.6.10
+
+学习 CSAPP
+
+- Got more proficient with `gdb` and `objdump`. Got more familiar with the sections in ELF files.
+- Learned about buffer overflow and the protection machanism for it like canary value.
+- Learned system call `mmap` and got a basic understanding of the zero-copy technique.
+- Spent a few hours digging into the attacklab's disassembled code. I feel like I'm still pretty bad at assembly code  and related stuff, and even reading a simple disassembled function would take me a long time to fully understand what the function is doing. I hope to get much better soon.
+
+阅读：
+
+- 《树犹如此》：介绍了创办《现代文学》杂志的故事，和志同道和、热爱文学的友人一起为了梦想专注实在是很美好的事情。
+
+开心感激：
+
+- 虽然对于assembly code仍旧十分笨拙，但是这一天专注投入了7小时15分的学习时长，我确信自己在变得更好。
+- 我十分专注于生活，在学习的间隙中，我着手应对我的烦扰——肩袖肌群肌肉薄弱导致的肩关节弹响，打字时错误使用手腕发力以及不恰当的触控板使用导致的腱鞘炎问题——每天都在朝着更好的自己前进。
+
+
+
 2025.6.9
 
 创作：
@@ -21,6 +84,8 @@
 
 
 ### week 23
+
+我答应自己每周都要完成一篇技术文章的创作，以及在小红书上分享自己关于读书/生活的思考感悟。这周是执行的第二周，我确信自己在坚定地践行长期主义。
 
 
 
