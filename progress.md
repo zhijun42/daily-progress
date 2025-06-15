@@ -1,5 +1,35 @@
 ## 2025年6月
 
+2025.6.14
+
+学习 CSAPP
+
+- Gained much deeper understanding of how generic cache memory organization works (direct-mapped cache vs set associative cache) and the meaning of all basic parameters. Carefully read the memory mountain graph to understand how temporal locality and spacial locality contribute to the read throughput in L1/L2/L3/memory.
+- Learned 6 different implementations of multiplying two matrixes by arranging the order of nested for-loop index `i`, `j`, `k`. Deeply analyzed the access patterns and understood how cache hit/miss and number of read/write have impact on the overall performance.
+- Started doing the cachelab of the course. First time writing non-trivial C language code and struggled a lot. Implemented the similuated cache and some helper functions.
+
+开心感激：
+
+- 和小莞聊天，聊成长经历和读书感悟。
+- 在B站上看了景德镇的旅行分享视频，喜欢这种挖掘当地美好的记录视频。
+
+
+
+2025.6.13
+
+学习 CSAPP
+
+- Found a hidden `movl` instruction in the gadgets and finished the last phase of the attacklab.
+- Read textbook to refresh myself on DRAM/SRAM and locality (I'd known about them after watching the course video a few days ago). Learned about generic cache memory organization.
+
+开心感激：
+
+- 重新恢复和羽毛球教练的训练课程，复习了前场交叉步脚步和挥拍挑球，专注训练的感觉很棒。
+- 我在Notion中对于不同的engineering话题记录了35篇文章，既有computer systems, networking, security, Linux, C++, Go, algorithm and data structures这类基础内容，又有AWS, Kafka, Kubernetes, backend等应用，有Raft, TiDB, Clickhouse, BoltDB等数据库相关，还有system design, tech blog阅读、tech interview记录、职业生涯回顾等内容，所有这些内容都堆砌在我的个人主页里。我今天对它们进行了系统的分类，并移动到专门的Notion空间里。整理真是能够让人心情愉悦。
+- 在B站上看到了「某幻」的游戏视频介绍Shipwrecked这款有趣的恐怖游戏，第一次接触到了ARG (alternate reality game)这种类型的游戏，起初还以为游戏内容是由真实事件改编而来，后来才明白游戏开发者为了让游戏故事显得真实做了多么大的努力。
+
+
+
 2025.6.12
 
 学习 CSAPP
@@ -37,6 +67,7 @@
 
 - 仔细研究并训练健康合理的用蓝牙键盘打字的方式来避免腱鞘炎，还学了些肌肉松解动作，着手解决问题的感觉很棒。
 - 在小红书上读博主「半城太菜」思考感悟网球的文字，被这样轻盈舒适、让人愿意亲近的创作而打动，我进一步意识到了自己的问题，今后会努力训练让自己的文字朝此靠近。
+- 看完了B站上阿尖的视频「我在南美🇨🇴深山和原住民一起生活了1周」，非常喜欢。
 - 小唐成功通过了公司内部转岗面试，终于要开始做心心念念已久的智能康复产品经理了。她说，我给她写的那份“不要考虑什么五年专家这件事”的长回复对于激励她赶快开始行动很有帮助。
 - 今天台风天下大雨，在房间里听着雨声专心学习时感到无比幸福，我从小就很喜欢雨天。
 - 老妈为了应对明天可能没菜可买，晚上出门到街上找寻物资，回家路上还被阵雨打湿了。
@@ -108,7 +139,7 @@
 
 学习 CS144
 
-- Spent 4 hours (damn I'm so patient!!) just trying to set up my working environment. I just wanna achieve two things: [1] I can build and run the C++ code of the course in the Linux container; [2] I can have syntax highlight, auto complete and use the beautiful debugger UI in the CLion IDE on my Macbook - I've already accepted the unfortunate truth that this codebase can't be built and run on MacOS, because I don't have stuff like the  `<linux/if_packet.h>` header).
+- Spent 4 hours (damn I'm so patient!!) just trying to set up my working environment. I just wanna achieve two things: [1] I can build and run the C++ code of the course in the Linux container; [2] I can have syntax highlight, auto complete and use the beautiful debugger UI in the CLion IDE on my Macbook - I've already accepted the unfortunate truth that the codebase of this networking course can't be built and run on MacOS, because I don't have stuff like the  `<linux/if_packet.h>` header).
 
   - I realized **CLion’s Docker toolchain is fundamentally flawed for long-lived builds/debugging**, since it spins up short-lived containers and doesn't allow enough time to receive reply from CMake, thus throwing error `CMake File API: /app/build: no reply dir found`.
     - Furthermore, I'm convinced that there's no value to use Jetbrains IDEs' Docker related features since we can simply run all the Docker CLI commands ourselves.

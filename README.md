@@ -7,7 +7,11 @@ GPT建议内容：
 - 今天我完成了什么
 - 学到的三个亮点
 - 我想到的一个问题
-- 每周提问：本周我是否更接近我想成为的人？如果没有，为什么？
+- 每周提问：
+  - 本周我是否更接近我想成为的人？如果没有，为什么？
+  - **At the end of each week, write a 1-line sentence that answers: “What wall did I test this week?”**
+    - Optional: What belief or habit did I challenge? What small door did that open up?
+
 
 我新增内容：
 
