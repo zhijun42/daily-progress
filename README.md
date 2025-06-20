@@ -11,6 +11,11 @@ GPT建议内容：
   - 本周我是否更接近我想成为的人？如果没有，为什么？
   - **At the end of each week, write a 1-line sentence that answers: “What wall did I test this week?”**
     - Optional: What belief or habit did I challenge? What small door did that open up?
+    - Areas of behavior changes
+      - *Cognitive* (e.g., learning patterns, retention, energy)
+      - *Emotional* (e.g., mood shifts, joy, burnout signs)
+      - *Systemic* (e.g., time allocation, process tweaks)
+      - *Creative* (e.g., writing/learning feedback loop)
 
 
 我新增内容：

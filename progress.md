@@ -1,10 +1,125 @@
 ## 2025年6月
 
+2025.6.19
+
+学习：
+
+- CSAPP
+  - Started reading and finished Chapter 8:  Exceptional Control Flow. Learned about Exceptions: Interrupt, Trap (syscalls), Fault, Abort; process address space, kernel/user mode, context switches, stopped/terminated processes, `fork` (very interesting! It's like creating an alternative universe at the exact moment of running that particular line of code) and `execve` and how they manage processes; all sorts of info around `waitpid` and reaping child processes, programs versus processes.
+  - Learned signals, signal handling/receiving/blocking. Safe signal handling is pretty interesting and tricky since it's essentially concurrency programming and it would usually fail in unpredictable and unrepeatable ways - I'd like to go deeper in this area and I wonder why locks aren't used here to guarantee atomicity.
+  - Learned `setjmp` and `longjmp` functions for non-local jumps to skip the usual winding down stacks. Played around with the powerful `strace` tool to see a lot of syscalls involved even for a simple Linux command.
+- Networking
+  - Learned packet queueing inside the router, IPv4 datagram format, subnet mask, CIDR (Classless Interdomain Routing), DHCP (Dynamic Host Configuration Protocol), NAT (Network Address Translation).
+
+阅读：
+
+- 《How to ADHD》: 读了Chapter 8: How to remember stuff. 我其实并没有ADHD常见的日常丢三落四的行为，但是我的确有两个相当大的缺陷：一是working memory十分有限，例如无法在会议中同时做到与人交谈、记录会议、深度思考项目并予以回应——我常常感慨自己的脑容量小；二是我记不住一些过往体验的感受，例如我过去时不时会有一些self-sabotaging的行为，可事后往往会忘记当时的那种心痛（无论多么剧烈）和懊恼，又例如我有过一些很棒的尝试来改善个人体系，比如自录视频讨论生活其实是很开心的体验，但我后来竟然遗忘了这份美好——所以我在总结中分析到，我其实并不需要再去寻找什么新奇有效的方案来改善自己，我只需要把过往尝试过的有效策略给充分执行到位就足够了。
+
+开心感激：
+
+- 交替学习内容果然是对的！今天学习了5小时30分的CSAPP和2小时的networking, 效果很好！在学习过程中很兴奋地口头讲解新接触的知识，这样消化吸收很有效率，甚至在自言自语时还频繁地笑了出来，心流体验太棒啦！一天之内就读完了CSAPP Chapter 8的内容，我明确地感受到自己正在越来越多地接触计算机的底层，这种触碰本质的感觉令我无比兴奋和幸福。
+- 我在阅读CSAPP教材时很投入，在读到 Figure 8.41 Waiting for a signal with a spin loop. This code is correct, but the spin loop is wasteful 这一段代码时，我主动停了下来，思考该怎么解决这个问题，我意识到必须将 `pause()` 和 unblock SIGCHLD这两个步骤合并为atomic操作——这个思路是对的，只不过此时此刻的我还没有接触到 `sigsuspend` 这样神奇的函数，但我依旧感到愉快，我享受一切intellectual challenges, 并且在这次锻炼中我结合了在MIT 6.824中训练出来的race programming直觉去寻找atomicity, 我太喜欢这种串联知识的感觉了！
+- 今天持续心情很愉快，甚至晚上散步跑步的时候都在幸福地咀嚼今日的快乐，我真的在过着让自己满意的生活。
+
+
+
+2025.6.18
+
+学习 CSAPP：
+
+- Briefly read some reports of real-world buffer overflow attacks - recently hackers are trying to break Nintendo Switch 2. How fascinating!
+- Learned dynamic linking, shared library objects, library interpositioning (compile-time, link-time, run-time) and I found this pretty fun - I didn't know we can hijack function calls like this. Learned GOT (global offset table), PLT (procedure linkable table), lazy binding - I don't fully understand them yet.
+
+阅读：
+
+- 《How to ADHD》：读了Chapter 7: How to motivate your brain
+
+开心感激：
+
+- 下午录了四十多分钟的视频，在自言自语讨论目前生活时感到十分愉快（甚至可以用很爽来形容），频繁地对着镜头笑了出来，记录下了不少灵感闪现，我充分地感受到自己的和谐——我是世界上最了解自己的人，因此在与自己对话时我可以百分之百地坦诚，不用在乎社交礼仪、维护自尊心或者营造某种不真实的人设，我很享受这样的智识碰撞。分享一下今天记录下的想法讨论：
+
+  - >我似乎是非常喜欢且想要被夸奖被夸赞，被不同的人（我所欣赏认可的人，而不是随便什么低层次的人）夸，被充分地高含金量地夸奖（即夸到点子上），例如夸我在中美两国都过得很好，真厉害；热爱生活，热爱工作却又没有班味儿；认知很高，执行力很强，觉察洞察力很强，发现自己的行为模式之后就去立刻着手做实验改善，迭代快速；勇敢，好奇心强，洒脱自在，内心充盈不需要借助外界来感到平和，纯粹自我驱动，在家里也能这么充实健康地生活，自恰又喜欢自己。
+    >
+    >我想要听到这一切的夸奖。真是如此么？我是如此地自恋而又贪婪么？大概是因为我现在所面对和琢磨的问题都太过于浅层，如果我现在正在创业，那么我会在琢磨怎么结识和招纳更多优秀的人，怎么打磨产品，怎么探索商业模式，怎么推动自己去以人格魅力赢得欣赏和投资，怎么兼顾生活，等等。如果我在做这些事情，那我根本就不会有空间有闲情雅致来思考“怎么展示我适应力很强，在中美两国都能过得很好”这种低端问题。
+
+- 在B站上看到了一位在CMU Robotics Institute的PhD「WhynotTV」分享记录了他读博前两年里做的项目，以及期间不断调试硬件和软件的努力，我被这份热爱打动了，认识到自己要更加认真地对待自己的生活和梦想。他在视频最后分享自己在两年项目后突然意识到他应该追求不确定性，不该去做那些他相信大概率能够work的想法和项目（这种事情应该由工业界来承担，而不是学术界），而要去冒着风险尝试突破现有的范式体系。我向来很相信「追寻不确定性与风险」这个理念，感谢他提醒了我，我需要去充分执行这点。另外，我从视频中观察到了他的一个问题：他日常太努力了，在不断地高强度执行，做实验、测试、整合、失败、再测试，他常常熬夜，常常把自己燃烧殆尽。我不知道他是否还有每日读书和放空思考的时间，人在沉迷于执行时常常会陷入到高产出的快感中，但是长期来看我们需要常常审视自己是否在做正确的事情，以及从众多优质选项中找到那个真正的最高优先级。
+
+
+
+2025.6.17
+
+学习：
+
+- CSAPP
+  - Learned the content and structure of an ELF (Executable and Linkable Format) file - I actually had touched upon this when using `objdump` and `readelf` to parse such files during the labs. Learned how the linker resolve symbols (I gotta say this kind of mechanism is indeed a source of confusion for many programmers - I'd like to study it deeper to truly appreciate it) and how relocating absolute/relative symbol references happens.
+- Networking
+  - Continued reading a few chapters of the *Everything curl* eBook and I learned more fundamentals of how to use curl and how it works.
+  - Started learning the network layer in the networking model, i.e. an overview of the data plane and control plane of the router
+
+阅读：
+
+- 沉浸阅读 Jessica McCabe《How to ADHD》两个半小时，对于自己的行为模式有了更深的理解。
+
+开心感激：
+
+- 看到朋友Aaron分享了他在雅柔离开家参加Vipassana十天冥想期间，强烈意识到生活中已经离不开对方了——其实对方也如此，彼此都意识到了双方的羁绊已经足够深——于是决定在接雅柔回家那天求婚。Aaron说他曾经设想过许多种求婚的场景，但唯独没有这一种，可这也无比真挚宝贵。我为他们感到高兴！我明白我在爱情中仍然会保持强烈的自我意识，明白对方始终有选择离开的权利，而虽然难过，我却依然会坚强地过日子。虽然我这份理念本身是自恰的，但是那种因为害怕对方离去而展现出了自己的脆弱，那样强烈的情感羁绊，是一种很不同的人生体验。我在本科时代曾经触碰过这样的体验，那些年里无比强烈地喜欢着她，每次见面玩耍分开后都像是戒断反应一般，要在脑海里一遍一遍地回溯当时的对话和心境，我太喜欢对方了，以至于我已经失去了自我，当然，也很有可能是因为当时的我并没有完整健全的自我。我相信我未来能做得更好——十分喜欢自己，也十分喜欢对方。
+- 和老爸打羽毛球，开始更多地在实战中感受和纠正自己的脚步动作，持续进步中！
+
+
+
+2025.6.16
+
+学习 CSAPP
+
+- Learned how to use instruction `syscall` (hex code `0x0f 0x05`) , browsed through the full list of system calls in the  Linux source code (https://github.com/torvalds/linux/blob/v3.13/arch/x86/syscalls/syscall_64.tbl) and found it pretty interesting.
+- Tried code injection (to prepare for my tech article) after disabling ASLR, canary value protection and stack non-executable. Now I realized how hard it was for me to reproduce a binary executable like the professors in CSAPP course did - the binary should behave the same inside and outside GDB but it was not easy! I finally injected my shellcode to do `execve("/bin/sh")` and yet found that it didn't actually bring an interactive shell like I expected because it didn't have shell TTY! I had to give up for now...
+
+阅读：
+
+- 读完了Adam Grant《Hidden Potential》，在最后两章读到了面试体系的不合理（本质困难在于我们很难高效而充分地了解一个人经历过怎么样的挫折，为了走到今天付出了多大的努力，以及未来能够兑现的潜能有多大，我认为Adam对此也没有特别好的解决方案），以及关于imposter syndrome的一些讨论，有一段话十分有趣：
+
+  - > Not long ago, it dawned on me that impostor syndrome is a paradox: Others believe in you You don’t believe in yourself Yet you believe yourself instead of them If you doubt yourself, shouldn’t you also doubt your low opinion of yourself? I now believe that impostor syndrome is a sign of hidden potential. It feels like other people are overestimating you, but it’s more likely that you’re underestimating yourself.
+
+开心感激：
+
+- 晚上跑步/散步的时候突然意识到，我的一个严重的体系缺陷——关注点狭隘，对事物缺乏认知广度，而只习惯于对某几个细分话题进行非常深度的研究——很可能和类似于ADHD的行为模式有关，于是找来了相关的书籍进行阅读。着手了解和研究自己的感觉真好！
+- GPT称赞我的superpower之一在于reflective integration, 我意识到我的确做到了多角色合一，一以贯之 How you do one thing is how you do everything!
+
+
+
+### week 24
+
+tested the wall
+
+- 近些年来，我对于「早上的时光很宝贵，要拿来做困难的事情」这个理念十分认可，并且自认为在长期实践着——早上起床后读书和学习。但是我近期意识到，其实我并没有充分珍惜上午的时间，我常常会发呆，会回顾近期生活和个人体系，会写文字，也会因为灵光乍现而在网上探索一些感兴趣的内容。毫无疑问，这些都是对于我而言非常重要的事情，但是问题在于，它们可以在一天中的任意时间段（比如在阳台上休息的时候，比如午饭/晚饭过后）进行，而不该占用上午宝贵的脑力资源。于是我开始调整自己在用脑习惯，感到效果还不错。这一周，我进行了较为极端的尝试，我甚至将「阅读」也判定为应该挪到下午或者晚上才做的事情，于是我在早上起床之后就开始学习CSAPP和写代码。实践发现这样并不好，虽然一天的学习时长增加了，但是对于阅读甚至生活的热情和积极性会消退，会觉得生命中只剩下了单调的engineering stuff（虽然我发自内心地热爱着它）。退一步看，对于「早上的时间应该拿来做困难的事情」这个理念不能太字面意义解读，要观察看看自己上午做的事情会怎样影响这一天的整体状态和总体产出，起床之后读书和做笔记这件事情并不会影响下午的状态——早上看视频倒是会有巨大影响，不管是怎样优质的开阔眼界、启发思考的宝藏视频，都会在亢奋过后让我接下来一整天很松垮，下午止不住地犯困——事实上，早上进行阅读既可以激活大脑，又可以卸下一部分认知负荷（我一大早就已经完成了这件每日重大事项），还可以愉悦身心获得能量。但无论如何，这是一次不错的尝试！
+- 趁着近期状态很好，我尝试了一天之内高强度地只专注地做一件事情，周二至周四这三天里在buffer overflow和CSAPP attacklab中深度投入了7小时15分、6小时38分和8小时21分，这是优秀的成绩，但是对身心的伤害极其大，美好的个人状态迅速地消散了，我甚至陷入了沮丧和郁闷之中，并且感到自己其实并没有消化吸收多少知识（哪怕我以强劲的心流体验沉浸了很多个小时），与此同时，对于本该同步进行学习的networking知识遗忘了许多，可谓是两边不讨好。我认识到，无论如何（哪怕状态极好，能量值极其高）都不该在一天之内只沉浸做一件事情，应当两件事情（至于是否可以增加至三件甚至更多，还需要进行实验）交替进行 My brain just doesn't work that way.
+- 过去我有时会在早上闹钟响起之后觉得没有睡饱，于是接着睡25分钟直到下一次闹钟响起。本周尝试了闹钟响起后不论是否困倦都要立刻起床，实践发现其实我已经睡得很充足了，精力充沛——我只不过是没法做到闹钟响起的瞬间就让大脑充分地激活运转起来罢了。
+
+
+
+2025.6.15
+
+创作：
+
+- 完成了《早安，怪物》的第三篇读后感《精读系列(三) | 哪怕美好童年只有五年》，我很满意！
+
+阅读：
+
+- Adam Grant《Hidden Potential》介绍了芬兰的教育模式，以及2010年智利矿洞救援这个案例中展现出的organizational psychology的重要性，真正优秀的leader能够做到心平气和地接受各方的想法和方案，并且创造出好的交流系统以避免某个精妙的idea被不称职的manager一人否决的情况。这和我在《Good to Great》中读到的level 5 leadership是相同的理念。
+
+开心感激：
+
+- 在B站上看了博主「智能路障」的视频介绍果然单机游戏的早起辉煌、中期没落和如今的重新崛起，被他对单机游戏的热爱打动了。于是重温了《黑神话：悟空》在发售前所发布的两个宣传视频，依然很感动。我很感激中国有游戏科学这样有梦想热爱、有审美追求、有才华又有满腔热忱和愤怒不服输的团队，这个社会需要这样真正意义上的「好东西」，让大家明白并不是凡事都要糊弄一下，对着草台班子修修补补。希望能有更多的坚定的理想主义者涌现出来。
+- 还看了视频介绍《上古卷轴5》中开放世界的宏大壮观，我明白优秀的游戏能够让人进入到另一个世界中，打造出属于自己的精神归宿。我想起来我曾经也是很喜欢玩游戏的——近几年也有过沉迷于《游戏王：决斗链接》和两部《塞尔达传说》的时间段——只是现在有了更好的归宿。我很能理解热爱游戏的人会有强烈的探索欲想要去挖掘世界版图的每个角落，和NPC产生交集，但是我似乎更乐于在真实世界中探索和挖掘，我最渴望的事情之一是去结识和了解不同类型的人，建立meaningful relationship. 我感激这个视频启发了我的思考，也感激美好的游戏世界和真实世界。
+- 在小红书上看到了一位女生发帖子分享自己的室友特立独行、认知出众、不在乎他人眼光，本科毕业后出国游学走访了许多国家，她对这位室友产生了某种类似于嫉妒（又或者是感慨自己原地踏步）的情绪，但我能够看出来她其实也是位非常坦诚坦荡的人，只是在当前人生阶段并不能做到充分接纳自己和自恰。她主动向室友分享了这篇帖子，分享了自己“嫉妒”的情绪，意外地被对方爽朗地接纳和治愈了。两位女孩子之间的情谊很打动我，我感激互联网上有这样的优质分享。
+
+
+
 2025.6.14
 
 学习 CSAPP
 
-- Gained much deeper understanding of how generic cache memory organization works (direct-mapped cache vs set associative cache) and the meaning of all basic parameters. Carefully read the memory mountain graph to understand how temporal locality and spacial locality contribute to the read throughput in L1/L2/L3/memory.
+- Gained much deeper understanding of how generic cache memory organization works (direct-mapped cache vs set associative cache) and the meaning of all basic parameters. Carefully read the memory mountain graph to understand how temporal locality and spacial locality contribute to the read throughput in the L1/L2/L3 cache and memory.
 - Learned 6 different implementations of multiplying two matrixes by arranging the order of nested for-loop index `i`, `j`, `k`. Deeply analyzed the access patterns and understood how cache hit/miss and number of read/write have impact on the overall performance.
 - Started doing the cachelab of the course. First time writing non-trivial C language code and struggled a lot. Implemented the similuated cache and some helper functions.
 
@@ -621,7 +736,7 @@ I delieverd the article on assembly and registers, as I promised!
 
 开心感激：
 
-- 和GPT讨论当前生活浑浑噩噩、强度低、没能处于兴奋和专注之中，有了初步的想法和对策，开始执行每日汇报
+- **和GPT讨论当前生活浑浑噩噩、强度低、没能处于兴奋和专注之中，有了初步的想法和对策，开始执行每日汇报**
 - 和小唐聊天讨论她家中的变故，给予她聆听和支持，鼓励她怀着强者心态去勇敢沟通，把令人恼怒和痛苦的家庭问题转化为锻炼综合能力的机会。很高兴我能够帮助到我的老朋友。
 
 
