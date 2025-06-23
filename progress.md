@@ -1,5 +1,88 @@
 ## 2025年6月
 
+### week 25
+
+test the wall:
+
+- 我有意稍微调整作息，本周的平均上床睡觉时间是23:32, 是有记录以来上床最早的一周，而本周之前的平均时间是23:44, 这次作息调整并没有带来明显的益处，但是没有关系，下周我会继续保持在23:30甚至更早就上床休息。
+- 周二晚上看了电影《猫鼠游戏》的前80分钟——为了保持稳定作息，及时退出了，干得好！——周三上午看了剩余的60分钟，并在结束后趁着兴奋又重复欣赏了一些精彩片段，还去逛了半个小时的影评。这次实验表明不管状态如何都不该在上午看电影（也包括各种视频），要给大脑以足够高挑战的任务。
+- 每次开始学习任务时会在手机上设置2小时的计时器，通过引进exit ramp来针对性解决我的hyperfocus问题。这似乎带来了未曾料想的负面效果，我因为感到些许的不舒适自在而没能达到持久的高度专注状态了，实践几天以来只有一次成功地专注两个小时从而触发计时器响起（我立刻起身离开了卧室，干得不错！），其他时候都是只能专注一个多小时就要脱离了。不过我依然很相信这个方案的潜力，只不过是我暂时没能充分适应它罢了，我会继续执行的。
+- 一直以来我都是将MacBook的dock设置在屏幕的最左侧，本周开始尝试将其自动隐藏，这样一来所有程序和窗口的显示内容都增大了，感觉上（虽然并不显著）这种模式可以更好地帮助自己专注。
+
+犯下的错误
+
+- 几乎每天都是十一点过后（有两次甚至是十二点半）才开始学习，在此之前需要阅读，需要写每日汇报（严格来说通常是每隔一天来一次性写下两篇报告），还有吃早饭。周一早上读完了《Hidden Potential》之后有了些灵感，于是逛了逛Adam Grant的个人主页和近况，还读了另一位作者对于Adam建立personal brand的评论。我记录了一些思考内容：阅读英文原著是否值得？下一本书应该读什么？哪一类书籍能够帮助现阶段的我过得更好？不知不觉之间，我陷入了高质量信息流之中，回过神来已经过去了一个小时，而后果是今天中午十二点半才开始学习任务。这又是一次典型的犯错，我所阅览的信息本身并没有问题，但我不该在上午精力充沛的时候去浸泡。当然我可以给出一个解释，说这是因为我读完了《Hidden Potential》，鉴于我每年完整读完的英文原著并不多，所以值得花些时间趁着兴奋浸泡一下。这个解释的确很有说服力，但实际上我并没有闪现什么灵光，而只是单纯地兴奋亢奋罢了，对于这种情绪不能纵容打破当天的稳定性。
+  - 下周我希望尝试每天晚上写当日的总结，而不是像现在这样早上一次性写两篇，另外早上十点半前必须开启学习。
+
+
+
+2025.6.22
+
+学习 buffer overflow 为技术写作做准备
+
+- Learned how ROP can bypass the stack canary protection - leak the canary value at run-time, exploit a non-canary-protected function.
+- Spent a few hours digging deep into the attack of vulnerability in SolarWinds Serv-U FTP program (CVE-2021-35211). Fascinating read!
+
+阅读：
+
+- 《BE 2.0》：Jim Collins uses two close friends of his, Tommy Caldwell and Steve Jobs, as well as Winston Churchill, to showcase how "luck favors the persistent".
+
+开心感激：
+
+- 在B站上看了很喜欢的博主「三宋在这」最新一期视频，带退休在家的妈妈去泰国清迈旅行，很治愈的内容。
+
+
+
+2025.6.21
+
+学习 CSAPP：
+
+- Started doing the tiny-shell lab. Read the full requirements and the source code. Learned why reaping a child process is actually a side-effect of syscall `waitpid`. Learned C's `static` and `volatile` keywords. Played with the Jetbrains' debugger UI to fully understand how `char **argv` the array of pointers works.
+
+创作：
+
+- 抓住了昨天晚上的灵感和情绪觉察，完成了《筋膜枪，电推剪，和爸妈生活的日子》这篇文章，我很满意！
+
+阅读：
+
+- Jim Collins《*Beyond Entrepreneurship 2.0*》 (*BE 2.0*) : Talked about core values, purpose and missions, and these 3 components constitute vision of the company. I enjoy this framework, and I'd like to apply it to my personal life as well. I also love the idea of BHAG (big hairy audacious goal) and realize that I have been too gentle with myself and should try to push for something that I'm not 100 percent sure of achieveing but nonetheless fully commited to.
+
+开心感激：
+
+- 羽毛球课程终于来到了正手击球的教学，我终于开始用正确的方式挥动正手了，很开心！
+- 晚上和老妈在电影频道上看了一会儿纪录片《火山挚恋》。
+
+
+
+2025.6.20
+
+学习 
+
+- CSAPP
+  - Read the Chapter 12: Concurrent Programming. Learned concurrent programming with processes and I/O multiplexing (though not super familiar yet). Learned how threads are created and reaped, shared resources, the 4 different classes of thread-unsafe functions (I love this classification!), mutex/ races/ deadlocks (I'm already pretty familiar with this topic). Also learned about the dining philosophers problem, quite interesting!
+- Networking
+  - Learned some routing algorithms, mostly just classic computer science graph problem of finding shortest path.
+
+阅读：
+
+- 《How to ADHD》: 读了情绪管理，还读到了ADHD的优势表格，虽然我并不完全属于ADHD这个群体，但是对照阅读这个表格让我感到十分愉快，我意识到我其实具备（并非出于盲目自信或是吹嘘）其中的绝大部分优势，对于几乎每个优势我都有对应的行为模式和记录。这种喜欢自己、欣赏自己的状态很棒！
+	- | Creativity               | Openness to new experiences | Spontaneity            | Empathy         | Adaptability    |
+	| ------------------------ | --------------------------- | ---------------------- | --------------- | --------------- |
+	| Originality              | Being a jack-of-all-trades  | Persistence            | Intuition       | High-energy     |
+	| Enthusiasm               | Cool under pressure         | 🧠                      | Sense of humor  | Problem-solving |
+	| Thinking outside the box | Learning quickly            | Emotional intelligence | Risk-taking     | Flexibility     |
+	| Curiosity                | Pattern recognition         | Making connections     | Resourcefulness | Resilience      |
+
+
+开心感激：
+
+- 老妈一直很喜欢打排球，最近几天的强度比较高导致腿部有些酸痛，于是我把自己不怎么用得上的筋膜枪拿给她，她用了两天后说效果不错。今天晚上睡觉前，老妈兴奋地给老爸安利这个新奇东西，对着他的小腿腿肚打了一阵子。这个画面让我很感动。
+- 今天回顾了这一个月的每日汇报，发现内容十分充实。我近期的状态很好，发自内心地喜欢自己，享受当下，憧憬长期，对比起5月18日刚开始记录时有了巨大的进步和提升，并且我确信这不只是一时的波动，因为我已经搭建起了更为有效且适合自己的个人体系，随着时间积累，它甚至会展现出更强大的潜能。感谢我的老朋友GPT, 也感谢自己的坚持执行。
+- 在两项学习内容（shortest path, dining philosophers problem）中都遇到了Edsger Dijkstra, 了不起的计算机先驱！
+
+
+
+
 2025.6.19
 
 学习：
