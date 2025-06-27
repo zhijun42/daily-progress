@@ -1,5 +1,78 @@
 ## 2025年6月
 
+2026.6.26
+
+阅读：
+
+- 《BE 2.0》: Measuring, appreciating, respect. "There's no secret in running a business" 我读完了这本书，并且回过头再读了一遍开篇章节所强调的first who原则。我感到我收获了不少启发，对于未来创办企业、打造符合自己核心价值体系的圈层有了更多信心，我想要写一篇读后感来提炼我的学习感悟。
+
+创作：
+
+- 终于完成了《黑客入门 | 用ROP和shellcode攻击SolarWinds Serv-U SSH漏洞》写作！
+
+开心感激：
+
+- 好友Noco分享说我前些天写的文章《筋膜枪，电推剪，和爸妈生活的日子》很打动她，文章的真情流露和细腻细节有种抚平内心褶皱的感觉。Noco是爷爷奶奶带大的，爸妈常年在外地工作，她说现在格外珍惜和家人相处的时间。感谢我的朋友，感谢对于我写作和观察生活的支持。
+
+
+
+2026.6.25
+
+学习
+
+- Continued digging deep into the SolarWinds Serv-U FTP vulnerability detailed reports. Finally understood where does the injected shellcode lives, the relationship between the buffer and the `cipher_data` structure, the reason why the huge payload of ROP chain and shellcode got sent to the Serv-U server only requesting 0x108 bytes of data read for heap spraying and why send the huge paylad one last time.
+  - Read a report on this vulnerability by another hacker and I realized that there're usually multiple ways/styles to attack the same systems.
+- Handled some boring engineering setup issues - my EC2 machine in Singapore suddenly became extremely slow and lagging for no reason (I've ruled out the possibility of networking issue, mostly), so I had to set up a new EC2 machine in Tokyo. Also set up my IDE CLion to allow doing remote development via SSH.
+
+阅读：
+
+- 《BE 2.0》: hiring, inculturation, training, goal setting
+
+开心感激：
+
+- 看了优质视频《非洲的切格瓦拉是谁》了解到 Thomas Sankara的英雄事迹，感谢世界上有这样的理想主义的反抗者，感谢博主「小约翰可汗」的精心制作让我们了解到Burkina Faso这个非洲小国。在Sankara被刺杀后的三十多年里，人们仍然在怀念和纪念他，这让我无比感动。
+
+
+
+2026.6.24
+
+阅读：
+
+- 《BE 2.0》：execution, deadlines, SMaC (Specific, Methodical, and Consistent) 这个让我想起了《清单革命》带来的启示——在复杂系统采用设定好的SOP和清单check-list可以有效避免常见的低级错误模式。
+- 在读到 If you can create an atmosphere where people are dependent on each other—where people think, “I can’t let these people down”—you’ll get extraordinary performance 这句话时回想起了《Good to Great》最后一章节中的故事，于是重新阅读了一遍。
+
+创作：
+
+- 受阅读的启发，创作了文章《Why Greatness? 为什么要追求做到更好？》来记录两个重大结论
+  - 实现greatness其实并不比做到good更为困难，它其实并不需要承受更多的痛苦和付出更大的代价。
+  - 如果我们对于正在做的事情由衷地感兴趣，发自内心地在乎，享受其中，从中找到了意义感和成就感，那我们天然地就会想去把这件事情做好。
+
+
+开心感激：
+
+- 读到了博主「抒情的树林」通过实际文字对比验证，揭露一些有名气的文学作家抄袭剽窃的事迹，我很喜欢这类揭穿骗局的洞见，感谢这个社会上有这样愿意较真的人。
+
+
+
+2026.6.23
+
+学习
+
+- Security
+  - Continued digging deep into the SolarWinds Serv-U FTP vulnerability detailed reports.
+- CSAPP
+  - Learned virtual memory as a tool for cache, memeory management and protection; page table to translate virtual page number into physical page number; how multi-layer of page tables can save space; how locality plays a big role in ensuring high performance (instructions are usually successfully cached in L1/L2/L3 caches).
+
+阅读：
+
+- 《BE 2.0》：What is strategy?  What significant changes in your world (both inside your company and in the external environment) are you highly confident will have happened by fifteen years from now? Which of those changes pose a significant or existential threat to your company? What do you need to begin doing now—with urgency—to march ahead of those changes?
+
+开心感激：
+
+- 老爸是蓝牙耳机的重度用户，每天无时不刻不在佩戴着耳机听有声网络小说，甚至在睡觉时也戴着。我不想直接夺走这份消遣爱好，但也不想他的听力受损，于是购买了一款的外挂式（非入耳式）耳机给他。看到他今天立刻开始使用新设备，我觉得很满足。我应该多为父母花钱。
+
+
+
 ### week 25
 
 test the wall:
