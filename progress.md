@@ -1,6 +1,58 @@
 ## 2025年6月
 
-2026.6.26
+2025.6.29 Sunday
+
+学习
+
+- CSAPP Tiny Shell lab
+  - Properly used a spin loop and `sigsuspend` (which handles races)  in the main evaluation call to wait for the foreground child process to finish. Gained deeper understandings of the signal related syscalls like `sigaddset`, `sigfillset`, `sigprocmask` (this one could be used as mutex lock to protect global variables).
+  - Properly handle the running/maintaining of foreground/background jobs. Realized the importance of process group as the foundation of the process handling mechanism. There's still stuff missing in managing the processes.
+- CS144 checkpoint 1
+  - Realized I should use a sorted map to keep merging time slice intervals.
+
+阅读
+
+- 《The mountain is you》接触到一个十分有趣的观点：大脑天然地就渴望寻求挑战和困难。
+
+  - > The human mind is something called antifragile, which means that it actually gets better with adversity. Like a rock that becomes a diamond under pressure or an immune system that strengthens after repeated exposure to germs, the mind requires stimulation in the form of a challenge. If you deny and reject any kind of real challenge in your life, your brain will compensate by creating a problem to overcome. Except this time, there won’t be any reward at the end. It will just be you battling you for the rest of your life. 
+
+开心感激
+
+- 晚上录了一个小时的视频，非常开心！我惊喜地发现，我竟然可以通过和自己对话聊天，来收获类似于和高质量朋友进行深度聊天的巨大兴奋和幸福感。我明白我就是喜欢有intellectual challenges冲击碰撞，能够充分表达和展示自己（说白了就是喜欢显摆自己的优秀哈哈，以及the joy of talking现象真是十分常见），渴望被看见被理解——而我本人显然是这个世界上最了解自己的人之一，因此可以全盘接纳自己，这种百分百坦诚的接纳很打动我。我看到自己笑得很纯粹，我好喜欢自己啊，没想到居然不需要朋友在身边也能实现这么优质的人际互动爽感！并且在视频里看着自己真的是好有亲和力啊，显得人畜无害很真诚很有感染力啊！喜欢！越发期待今后创业来把这个能量场带来我的伙伴们了，一起搭建一个属于我们这样的理想主义、长期主义、乐观主义者的美好社区。
+- 昨天晚上运动过后没有立刻去洗澡，而是陷入了老毛病——回到卧室里打发时间看视频。我今天仔细分析研究了我的心理——我当然明白可以借助搭建系统来帮助自己减少自残式的时间黑洞，但是我还想知道，这是我的潜意识试图在与我沟通（我为什么会「想要」去刷视频打发下时间呢，是它感受到被压迫被支配了么），还是单纯的坏习惯罢了。思考过后终于明白了我的生活缺乏丰富度：一方面是，我每天的内容充斥了太多的文本，虽然我极其喜欢代码、读书和查看高质量post帖子，但那都是同一类范式啊；另一方面是，我日常生活没有足够的休息（注意，虽然我有大量的时间在思考、消化和吸收，但那并不是对大脑而言足够的休息），我需要切换领域和范式！我的这个低效休息有点像是一些低能量人会有的：直接倒头睡觉，shutdown关机。
+  - 我意识到了，我的大脑和无意识真的是为了我好啊，一心一意地守候我，它没法直接告诉我通知我，它没有面部表情和说话语气，但我可以从我的行为和内心感受来理解它想要传达的信息，根据我的主观感受和organic天然有机程度来判断我执行的度量是否合适。我突然与自己的大脑和身体讲和了，我再也不想对我的身体施加愤怒和沮丧了。
+
+
+
+2025.6.28 Saturday
+
+学习
+
+- CSAPP Tiny Shell lab
+  - Learned more about syscalls, `execve` and `fork`, races when making syscalls. Implemented signal handler `sigchld_handler`. Implemented searching from env `PATH` to locate the target binary executable file and then run it. Enjoyed using `strace` even more.
+- CS144 checkpoint 1
+  - Read the test cases to understand the logic and workflow of the reassembler and think about good data structure for it.
+
+阅读
+
+- 《Elon Musk》Justine, X.com and PayPal - it's good to see Peter Thiel and Max Levchin here now that I've read the book *Zero to One*; Day-1 of SpaceX and the hiring of Tom Mueller.
+
+
+
+2025.6.27 Friday
+
+学习 CS144
+
+- Improved the in-memory byte stream and finally finished checkpoint 0. I made a big mistake - I misunderstood the requirement! The `peek` function should return the next batch of bytes in the buffer, not all the bytes remaining in the buffer. So previously I spent a lot of time thinking about how to carefully craft a ring buffer to avoid copying two continuous chunks of `std::string_view` (although this kind of learning experience is useful for my growing). I corrected my error by using a queue to store the batches of input strings, instead of  a deque of all chars currently in memory.
+- As a side-effect, I learned about C++'s left/right values and `std::move` stuff.
+
+阅读：
+
+- 《Elon Musk》by Walter Isaacson：我去年和前年读到了Chapter 82:  The Takeover - Twitter, Thursday, October 27, 2022 已经接近读完这本很厚的书了，但是我不想这样囫囵吞枣，不想浪费这本精彩的作品，于是我决定从Chapter 8 Penn - Philadelphia, 1992–1994开始重新阅读来尝试挖掘出更多内容。今天读了Elon本科期间在硅谷的summer intern经历以及创办Zip2收获人生第一桶金的故事，有不少感受，其中最强烈的是再次意识到了自己这些年浪费了大量的时间和生命，对于自己的自由散漫太过于纵容——好消息是我现在已经在着手战胜我的弱点了。
+
+
+
+2025.6.26
 
 阅读：
 
@@ -16,7 +68,7 @@
 
 
 
-2026.6.25
+2025.6.25
 
 学习
 
@@ -34,7 +86,7 @@
 
 
 
-2026.6.24
+2025.6.24
 
 阅读：
 
@@ -54,7 +106,7 @@
 
 
 
-2026.6.23
+2025.6.23
 
 学习
 
@@ -609,7 +661,7 @@ I delieverd the article on assembly and registers, as I promised!
 
 
 
-2026.2025.5.31 + 2025.6.1
+2025.5.31 + 2025.6.1
 
 创作：
 
