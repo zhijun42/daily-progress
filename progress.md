@@ -1,5 +1,59 @@
 ## 2025年6月
 
+
+
+2025.7.2
+
+学习 CSAPP tiny shell lab
+
+- Read the text book more once. Tried 3 ways of running nested shell programs - [1] running zsh inside my tsh; [2] running my tsh inside zsh; [3] running another tsh inside my tsh - to learn about foreground process group, who gets the signals and stdin, etc. 
+- Refactored my code to make a separate function `babysit_foreground_job` to wait for a foreground running job to finish - it can be either running for the first time or bring back to life by the `fg` command.
+- Matched all expected outputs and finished the entire shell lab.
+
+
+
+2025.7.1
+
+阅读
+
+- 《成长的边界》（《Range: Why Generalists Triumph in a Specialized World》by David Epstein的中文版）:介绍了Tiger Woods和Roger Federer两种截然不同的成长和训练模式，前者是很早的时候就选定一个子方向开始训练，后者是广泛尝试不同兴趣后再做决定。我喜欢这种对比研究方式。
+
+开心感激
+
+- 回顾2024年的年度总结时发现自己正在十分显著地有效地改变自己，远远超出年初时的预期，进步和变好的感觉真是太棒了！
+
+  - > 在我众多的缺点弱点中，「不懂得做规划安排」给我带来过最多的创伤。一直以来，我都是个自由散漫的人，纯粹受情绪和注意力驱动，既可以沉浸式连续写代码几个小时，又可以专注地熬夜刷视频。坚持写日记这么多年，我充分剖析了自己的行为模式，我已经写不出什么新鲜新颖的反思和观点了。我究竟还能不能改变自己？当我说“我喜欢挑战困难的事情”时，我到底知不知道自己在说什么？这些问题要留给2025年的我来回答了。
+
+- 重温了国产动漫《罗小黑战记》，再一次被这一系列温暖治愈的故事和人物打动，感谢制作团队为这个世界带来了这样的美好。
+
+
+
+2025.6.30
+
+学习 CS144
+
+- Got more hands on with C++'s `std::map` and implemented the workflow of merging multiple intervals of strings into a larger one. Studied the expected behavior of adding segment of new data, and I finally finished lab checkpoint 1 passing all test cases.
+
+阅读
+
+- 《After the falls》Catherine tried to fit into the post-moving daily life and find her way to learn how to make friends (especially female ones, since her only friends so far have been her dad and the employee Roy who worked in dad's pharmacy store) with teenagers of her age. She was talking to a senior grade boy and her dad  mistakenly thought she was flirting with him and got furious - the first time he actually got angry with her. They started a cold war, mostly due to misunderstanding and lack of communication. I'm surprised that a well-educated and well-tempered man like her dad would end up using violent communication and hurting the relationship with his daughter.
+
+
+
+## week 26
+
+tested the walls
+
+- 我在周日上午意识到，如果把每天的运动锻炼时间从晚上调整到下午，那么我便可以在夜晚拥有更完整大块的专注时间，并且下午运动过后一定会及时地结束和洗澡，迅速地完成状态切换，而不会时不时地陷入到过渡期间的时间黑洞中。下周可以好好实践下这个新作息。
+- 我还是没能有效地改变自己的坏习惯，每天早上起床后总是会进入到思维漫游打发时间的状态里，做着一些无关紧要的事情。我会继续努力的，建立起真正适合自己的routine和模式。
+
+生活的阻碍
+
+- 肠胃很不舒服，周二和周三的半夜醒来拉肚子，周四周五上床后感受到明显的不适，占据了注意力难以入睡。
+- 个人体系不太稳定，容错率较低，如果一天的开局没有按照理想情况展开，或者发生了一些突发状况，个人状态就会受到很大的影响，往往是注意力和脑力迅速地被消耗殆尽，容易陷入到打发时间的无所事事之中。
+
+
+
 2025.6.29 Sunday
 
 学习
