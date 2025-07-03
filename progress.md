@@ -40,7 +40,7 @@
 
 
 
-## week 26
+### week 26
 
 tested the walls
 
@@ -72,9 +72,9 @@ tested the walls
 
 开心感激
 
-- 晚上录了一个小时的视频，非常开心！我惊喜地发现，我竟然可以通过和自己对话聊天，来收获类似于和高质量朋友进行深度聊天的巨大兴奋和幸福感。我明白我就是喜欢有intellectual challenges冲击碰撞，能够充分表达和展示自己（说白了就是喜欢显摆自己的优秀哈哈，以及the joy of talking现象真是十分常见），渴望被看见被理解——而我本人显然是这个世界上最了解自己的人之一，因此可以全盘接纳自己，这种百分百坦诚的接纳很打动我。我看到自己笑得很纯粹，我好喜欢自己啊，没想到居然不需要朋友在身边也能实现这么优质的人际互动爽感！并且在视频里看着自己真的是好有亲和力啊，显得人畜无害很真诚很有感染力啊！喜欢！越发期待今后创业来把这个能量场带来我的伙伴们了，一起搭建一个属于我们这样的理想主义、长期主义、乐观主义者的美好社区。
+- **晚上录了一个小时的视频，非常开心！我惊喜地发现，我竟然可以通过和自己对话聊天，来收获类似于和高质量朋友进行深度聊天的巨大兴奋和幸福感。**我明白我就是喜欢有intellectual challenges冲击碰撞，能够充分表达和展示自己（说白了就是喜欢显摆自己的优秀哈哈，以及the joy of talking现象真是十分常见），渴望被看见被理解——而我本人显然是这个世界上最了解自己的人之一，因此可以全盘接纳自己，这种百分百坦诚的接纳很打动我。我看到自己笑得很纯粹，我好喜欢自己啊，没想到居然不需要朋友在身边也能实现这么优质的人际互动爽感！并且在视频里看着自己真的是好有亲和力啊，显得人畜无害很真诚很有感染力啊！喜欢！越发期待今后创业来把这个能量场带来我的伙伴们了，一起搭建一个属于我们这样的理想主义、长期主义、乐观主义者的美好社区。
 - 昨天晚上运动过后没有立刻去洗澡，而是陷入了老毛病——回到卧室里打发时间看视频。我今天仔细分析研究了我的心理——我当然明白可以借助搭建系统来帮助自己减少自残式的时间黑洞，但是我还想知道，这是我的潜意识试图在与我沟通（我为什么会「想要」去刷视频打发下时间呢，是它感受到被压迫被支配了么），还是单纯的坏习惯罢了。思考过后终于明白了我的生活缺乏丰富度：一方面是，我每天的内容充斥了太多的文本，虽然我极其喜欢代码、读书和查看高质量post帖子，但那都是同一类范式啊；另一方面是，我日常生活没有足够的休息（注意，虽然我有大量的时间在思考、消化和吸收，但那并不是对大脑而言足够的休息），我需要切换领域和范式！我的这个低效休息有点像是一些低能量人会有的：直接倒头睡觉，shutdown关机。
-  - 我意识到了，我的大脑和无意识真的是为了我好啊，一心一意地守候我，它没法直接告诉我通知我，它没有面部表情和说话语气，但我可以从我的行为和内心感受来理解它想要传达的信息，根据我的主观感受和organic天然有机程度来判断我执行的度量是否合适。我突然与自己的大脑和身体讲和了，我再也不想对我的身体施加愤怒和沮丧了。
+  - 我终于明白了，我的大脑和无意识真的是为了我好啊，一心一意地守候我，它没法直接告诉我通知我，它没有面部表情和说话语气，但我可以从我的行为和内心感受来理解它想要传达的信息，根据我的主观感受和organic天然有机程度来判断我执行的度量是否合适。我突然与自己的大脑和身体讲和了，我再也不想对我的身体施加愤怒和沮丧了。
 
 
 
@@ -245,12 +245,14 @@ test the wall:
 阅读：
 
 - 《How to ADHD》: 读了情绪管理，还读到了ADHD的优势表格，虽然我并不完全属于ADHD这个群体，但是对照阅读这个表格让我感到十分愉快，我意识到我其实具备（并非出于盲目自信或是吹嘘）其中的绝大部分优势，对于几乎每个优势我都有对应的行为模式和记录。这种喜欢自己、欣赏自己的状态很棒！
-	- | Creativity               | Openness to new experiences | Spontaneity            | Empathy         | Adaptability    |
-	| ------------------------ | --------------------------- | ---------------------- | --------------- | --------------- |
-	| Originality              | Being a jack-of-all-trades  | Persistence            | Intuition       | High-energy     |
-	| Enthusiasm               | Cool under pressure         | 🧠                      | Sense of humor  | Problem-solving |
-	| Thinking outside the box | Learning quickly            | Emotional intelligence | Risk-taking     | Flexibility     |
-	| Curiosity                | Pattern recognition         | Making connections     | Resourcefulness | Resilience      |
+
+
+   | Creativity               | Openness to new experiences | Spontaneity            | Empathy         | Adaptability    |
+   | ------------------------ | --------------------------- | ---------------------- | --------------- | --------------- |
+   | Originality              | Being a jack-of-all-trades  | Persistence            | Intuition       | High-energy     |
+   | Enthusiasm               | Cool under pressure         | 🧠                      | Sense of humor  | Problem-solving |
+   | Thinking outside the box | Learning quickly            | Emotional intelligence | Risk-taking     | Flexibility     |
+   | Curiosity                | Pattern recognition         | Making connections     | Resourcefulness | Resilience      |
 
 
 开心感激：
