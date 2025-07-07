@@ -2,6 +2,82 @@
 
 
 
+### week 27
+
+本周的表现很不令人满意，原因其一是近乎报复式地花了好几个小时去重温《罗小黑战记》，导致整个人处于很松垮的状态；其二是整个人不是很清醒，一周的时间仿佛一眨眼就过去了；其三是我无意中几乎摒弃了daily report的routine, 只在周四这天下午一口气补充了本周前三天的报告，此后就没有再写report了，我的本意是将写报告反思的时间调整至每天晚上，但是却发现每天晚上都有大量任务需要完成，根本挤不出时间（当然也是因为优先级规划不到位）。
+
+整个人浑浑噩噩的，既没有坚持执行最新的作息体系，也没有带着激情去面对日常学习——虽然我还是出于习惯和本能地在学习。录视频本该是能够帮助自己清醒过来的，但是本周只匆匆录了十分钟便结束了，
+
+简单而言便是，我并没有带着清醒的意识去朝着我理想中的方向前进。
+
+tested the wall
+
+- 我意识到我这些年来进行每周的时间统计时总是在草稿纸上进行手算，是相当机械重复的步骤。虽然我在很早以前就写了Python程序来进行每月时间统计的自动化，但是在每周维度上还是习惯性手算。于是我在原有script上进行拓展和优化，实现了每天登记活动时间之后自动统计出本周、本月的总产出，相当方便。
+- 开始尝试在本子上写下脑海中随机产生的impulse和各种联想回忆，训练自己抵抗随机冲动的能力。
+- 购买了《罗小黑战记》的电影画册——内容包括人物造型设计、分镜稿、场景设计、画风探索、三维取景、后期合成制作等等，是非常精美、让人爱不释手的艺术品。我的日常生活几乎是百分百以电脑为中心展开的，我一直认为我需要给生活中增添纯纸质材料，来帮助自己偶尔完全切断电子设备的连接，静下心来。
+
+
+
+2025.7.6
+
+学习
+
+- Read some of the zsh source code like signal handler. Attached `strace` to a running zsh session to identify all syscalls involved.
+
+写作
+
+- 整理我在阅读《Beyond Entrepreneurship 2.0》过程的思考感悟，完成了读书笔记《Netflix老板每年都会重温的创业书》，我很满意！
+
+阅读
+
+- 《成长的边界》：梵高在成为画家之前的各种探索尝试；西点军校没能在训练营结束后留下人才的原因分析；Frances Hesselbein起初只是热衷帮助他人，摸索出了自己的职业路径，被Peter Drucker称赞为最优秀的CEO; InnoCentive向社会公众发布专业难题，通过寻求专业之外的局外人的创意和思路来解决难题；Jill Viles - How a woman whose muscles disappeared discovered she shared a disease with a muscle-bound Olympic medalist.
+
+
+
+2025.7.5
+
+学习
+
+- CSAPP
+  - Read the malloc lab requirements and read some of stuff about virtual memory in the textbook.
+- Networking
+  - Implemented the TCP receiver and thus finished the checkpoint 2 lab.
+
+阅读
+
+- 《How to ADHD》: For those who don't have ADHD, how to support those who do
+
+
+
+2025.7.4
+
+学习
+
+- Finished the `Wrap32` implementation in CS144 checkpoint 2.
+- Learned basics about CMake, including commands like `add_dependencies`, `add_library`, `add_custom_target` , `target_link_libraries` and variables like `CMAKE_BINARY_DIR`, `CMAKE_CTEST_COMMAND`.
+
+阅读
+
+- 《成长的边界》：学习任务需要有适当的认知难度。
+- 《The Art of Impossible》: Train when you're at your worst
+
+
+
+2025.7.3
+
+学习：
+
+- CSAPP
+  - Reviewed the finished tiny shell and consolidated my learnings.
+- Networking
+  - Read fellow engineers' implementations of the reassembler.
+
+阅读
+
+- 《成长的边界》：某孤儿院里的孩子们通过广泛接触各种乐器，最终被培养成了杰出的音乐家。
+
+
+
 2025.7.2
 
 学习 CSAPP tiny shell lab
@@ -37,6 +113,10 @@
 阅读
 
 - 《After the falls》Catherine tried to fit into the post-moving daily life and find her way to learn how to make friends (especially female ones, since her only friends so far have been her dad and the employee Roy who worked in dad's pharmacy store) with teenagers of her age. She was talking to a senior grade boy and her dad  mistakenly thought she was flirting with him and got furious - the first time he actually got angry with her. They started a cold war, mostly due to misunderstanding and lack of communication. I'm surprised that a well-educated and well-tempered man like her dad would end up using violent communication and hurting the relationship with his daughter.
+
+开心感激
+
+- 老妈尝试了全新的菜品——菠萝炒瘦肉，非常好吃！
 
 
 
@@ -190,7 +270,7 @@ test the wall:
 
 犯下的错误
 
-- 几乎每天都是十一点过后（有两次甚至是十二点半）才开始学习，在此之前需要阅读，需要写每日汇报（严格来说通常是每隔一天来一次性写下两篇报告），还有吃早饭。周一早上读完了《Hidden Potential》之后有了些灵感，于是逛了逛Adam Grant的个人主页和近况，还读了另一位作者对于Adam建立personal brand的评论。我记录了一些思考内容：阅读英文原著是否值得？下一本书应该读什么？哪一类书籍能够帮助现阶段的我过得更好？不知不觉之间，我陷入了高质量信息流之中，回过神来已经过去了一个小时，而后果是今天中午十二点半才开始学习任务。这又是一次典型的犯错，我所阅览的信息本身并没有问题，但我不该在上午精力充沛的时候去浸泡。当然我可以给出一个解释，说这是因为我读完了《Hidden Potential》，鉴于我每年完整读完的英文原著并不多，所以值得花些时间趁着兴奋浸泡一下。这个解释的确很有说服力，但实际上我并没有闪现什么灵光，而只是单纯地兴奋亢奋罢了，对于这种情绪不能纵容打破当天的稳定性。
+- 几乎每天都是十一点过后（有两次甚至是十二点半）才开始学习，在此之前需要阅读，需要写每日汇报（严格来说通常是每隔一天来一次性写下两篇报告），还有吃早饭。周一早上读完了《Hidden Potential》之后有了些灵感，于是逛了逛Adam Grant的个人主页和近况，还读了另一位作者对于Adam建立personal brand的评论。我记录了一些思考内容：阅读英文原著是否值得？下一本书应该读什么？哪一类书籍能够帮助现阶段的我过得更好？不知不觉之间，我陷入了高质量信息流之中，回过神来已经过去了一个小时，而后果是今天中午十二点半才开始学习任务。这又是一次典型的犯错，我所阅览的信息本身并没有问题，但我不该在上午精力充沛的时候去浸泡。当然我可以给出一个解释，说这是因为我读完了《Hidden Potential》，鉴于我每年完整读完的英文原著并不多，所以值得花些时间趁着兴奋浸泡一下。这个解释的确很有说服力，但实际上我并没有闪现什么灵光，而只是单纯地兴奋亢奋罢了，不能纵容这种情绪打破当天的稳定性。
   - 下周我希望尝试每天晚上写当日的总结，而不是像现在这样早上一次性写两篇，另外早上十点半前必须开启学习。
 
 
