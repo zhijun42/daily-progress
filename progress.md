@@ -1,5 +1,65 @@
 ## 2025年6月
 
+2025.7.9
+
+学习 CSAPP - dynamic storage allocation
+
+- Read through the end-to-end simple heap allocator with implicit free list (whose operations take linear time). Digged into the components of each block: header, payload, and optional footer.
+- Started doing the malloc lab and finished the C macros for handling raw pointer arithmetic. And I had a rough idea (walked through the details on paper) of how to implement the segregated fit free list design.
+
+阅读
+
+- 《发现的乐趣》：费曼分享美国挑战者号航天飞船事实调查过程。
+- 《成长的边界》：作者先是分享了美国各大商学院将挑战者号事故作为教学案例，启发学生们要积极寻找更多的材料进行决策，随后又否定了商学院的这套理论，认为NASA的实际错误在于过于强调量化决策而忽视了定性分析和因果推断。
+- 我通过交叉比对这两份文稿来研究人们是如何研究同一个课题的，思维的堆叠很有趣。
+- 《早安，怪物》：重新回顾和梳理总结书中对于梦境和潜意识的描写，为我本周的写作做准备。
+
+开心感激
+
+- 晚上陪爸妈看电视体育节目。
+
+
+
+2025.7.8
+
+学习 CSAPP -  virtual memory and dynamic storage allocation
+
+- Learned translation lookaside buffer (TLB) and how it helps with performance. Notice that both it and the L1 cache are on the CPU but TLB has performance advantage.
+- Learned the end-to-end process of address translation: given a virtual memory address, divide it into virtual page number (VPN) and virtual page offset (VPO, which is equal to the physical page offset, so I'd like to just call them page offset), further divide the VPN into TLB tag and TLB index, which are used to identify whether there's a TLB cache hit. Combine the fetched physical page number and page offset to get the physical address, and divide it into cache tag, cache index and cache block offset to check against the L1/L2/L3 cache and main memory.
+- Learned how malloc/free works and the heap memory allocator's policies on placement (first-fit, next-fit, best-fit), splitting and coalescing multiple free blocks.
+
+阅读
+
+- 《成长的边界》广泛接触多个领域和知识面的成员们组成的团队对于各类事件的预测准确率很高。
+
+开心感激
+
+- 雷暴大雨，让我感到很舒适很开心，下雨天总能给我带来灵性。
+- 晚上睡觉前和老妈在客厅电视上看一期介绍浙江跳跳鱼和福建坛紫菜的饮食节目，很幸福的亲子时光。
+
+
+
+
+
+2025.7.7
+
+学习
+
+- Computer systems
+  - Went through the full list of `errno` and studied some popular ones like `EPERM`, `EAGAIN`, `EMFILE` , etc. and their impact on production systems. Learned more about Linux manual and system calls (e.g. atomicity and retry on `EINTR`).
+- Networking
+  - Worked on TCP sender of the lab checkpoint 3.
+
+阅读
+
+- 《成长的边界》：通用型人才；任天堂早期在计算器上开发游戏，用新的视角来看待旧的工具；3M公司开发光学薄膜。我意识到达尔文的做事模式是我十分欣赏并想要去模仿的：
+
+> 只有在“适合他这样的科学通才去攻关的实验”出现时，达尔文才会亲自做实验。对于其他的东西，达尔文依靠的是与他人通信，他的风格和杰西里·赛斯一致。达尔文总是能在数个项目中游刃有余，格鲁伯称之为“达尔文的项目网络”。他至少有231位科学方面的笔友，从蠕虫到性选择，这些笔友按照他的兴趣可以大致分为13个大类。他接二连三地向这些笔友提问，然后再把这些回信中的信息裁剪下来，贴在自己的笔记本上，“笔记本里的思想看似混乱地相互碰撞”。当他的笔记本太过庞杂时，他就撕下几页，按照自己询问的主题进行归档。光是种子实验，他就和法国、南非、美国、亚速尔群岛、牙买加和挪威的地质学家、植物学家、鸟类学家和贝壳学家进行了书信来往，更不用说一些业余的博物学家和碰巧认识的园丁了。正如格鲁伯所描述的那样，创新者的活动“在旁观者看来，像一个令人困惑的混合体”，但是他或她能够把每个活动对应到正在进行的具体项目中。格鲁伯总结道：“从某种角度看，查尔斯·达尔文最伟大的作品是对他人先收集到的事实做了解释性汇编。”他是横向思考的整合者。
+
+开心感激
+
+- 晚上回到卧室突然发现顶灯坏了，老爸去家附近的五金店买来36瓦的灯管，不过我卧室里的灯具并不是那种带有灯泡螺纹的设计，需要把拆除九只螺丝并且解开铜线缠绕后才能卸下来。难度不大，但这种亲子时光很宝贵。
+
 
 
 ### week 27
