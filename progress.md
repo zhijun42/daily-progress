@@ -1,5 +1,89 @@
 ## 2025年6月
 
+
+
+### week 28
+
+我又一次犯下了和上周同样的错误，只进行一次每日汇报，大致有三个原因，其一是我潜意识里对其不够重视，觉得是否记录汇报并不十分重要，并不会影响到我日常表现（实际上，它虽然不会立刻展现出来，但却是会逐步侵蚀我的精气神）；其二是我白天的消耗太大，以至于晚上已经没有力气和情绪去进行记录了，这个需要刻意培养才行；其三是我没有容错机制，我只允许自己在晚上进行记录汇报，如果连续两天错过时间窗口，整个人就会开始放弃——我需要确保自己有足够稳定的基准线才行，如果晚上没能记录，那么第二天的白天必须及时补充，绝对不能落下进度。
+
+相比之下，本周更为重大的错误是，我**又一次地**只进行单一学习活动，我连续多日专注沉浸地投入于malloc lab之中，完全没有接触networking内容。我生活中只剩下computer systems了，哪怕写lab时十分兴奋亢奋，也不足以应对傍晚结束后的疲惫和精力垮掉。单一任务无论如何都是行不通的啊！我的生活近乎停滞（这个关键词很熟悉吧，我这些年来在美国期间常常有这种感受啊）了，只剩下这一个单一启动点（也称之为瓶颈）了，CS144 checkpoint 3已经拖了几乎一周，整理回顾Notion文档这项任务也是，『晚上写report回顾今日』这项目标也因为自己过于疲惫且晚上没有时间了而被完全搁置了，连前些天在坚持做的拉肩膀康复也被完全遗忘了，可恶啊！又陷入到了那种“日子一天天过去，感觉自己浑浑噩噩地用机械直觉来写代码”的糟糕状态。这样to-do list跟从前那种「不用任何当日安排，每天只管看准一个任务使劲莽，把所有时间都投进去就行，拆解milestone和预估时长安排项目啥的我不管我不会」的老旧模式在本质上没有区别！虽然malloc的确很有挑战很有意思，但not special enough to break the rules! 我完全高估了这项任务的价值。
+
+看来我还是没能把「绝对禁止一天只做一件主任务」的新认知给贯彻落实到底。
+
+其实我现在这种渴望尽快把malloc给做完的心态，和当初在美国工作时每天盼着把某个project尽快完成是完全一样的，整个人变得狭隘，关注点变窄，日子重复单调枯燥损害大脑和无意识，感受不到那种生活丰富多彩、头脑活跃时的持久幸福。我知道我在沉浸写lab的时候希望能够再多些一会儿，但是我现在明白了，我必须自己强制限时才行。不用担心自己的专注和热情散掉了浪费了，切换到Networking任务之后，也能够迅速地找到快感（如果没有，要么是因为自己浮躁了，要么是因为自己挑选的学习着手点不对），所以啊，我这是通过切换项目来保持自己的健康愉悦和专注啊！写了六个小时的malloc之后我都想不起来自己做过了什么，而如果malloc/networking分别做三个小时，那么我可以清楚地回溯追溯出思考的框架和逻辑链路，清晰地知道自己在着手哪一步，哪个环节可以改善，并且在闲暇时间里大脑还会自动加工进行沉淀提炼，而不会像现在这样直接抽离出来彻底罢工不思考了。
+
+
+
+2025.7.13
+
+学习 CSAPP - malloc lab
+
+- Fixed the error of forgetting to zero-out the payload of a newly free block.
+
+阅读
+
+- 《诺兰变奏曲》：继续介绍《盗梦空间》和《蝙蝠侠 - 黑暗骑士崛起》的创作
+- 《早安，怪物》：梳理书中内容进行写作
+
+创作
+
+- 艰难地寻找切入角度和叙事手法，综合介绍了Laura, Danny, Alana, 以及作者Catherine本人的案例分析，完成发布文章《精读系列(五) | 梦、无意识与防御机制》
+
+
+
+2025.7.12
+
+创作
+
+- 完成发布了文章《精读系列(四) | 当我开始与无意识沟通》
+- 梳理归纳《早安，怪物》书中的对于梦境和无意识和描写和案例分析。
+
+阅读
+
+- 《诺兰变奏曲》by Tom Shone (*The Nolan Variations: The Movies, Mysteries, and Marvels of Christopher Nolan*的中文译本)：介绍了经典电影《蝙蝠侠 - 黑暗骑士》和《盗梦空间》的创作过程。
+
+开心感激
+
+- 晚上和爸妈在电视上看纪录片《风味人间》介绍小麦、大麦和青稞的故事和食物制作，很幸福愉悦。
+
+
+
+2025.7.11
+
+学习 CSAPP - malloc lab
+
+- Understood how to handle alignment - I was able to guarantee that all blocks and the returned result of `malloc`/`free` must be 8-bytes aligned.
+- Implemented the logic of coalescing multiple free blocks. Redesigned the logic of traversing the linked list to find the target node.
+
+阅读
+
+- 《集异璧》by Douglas Hofstadter (*Gödel, Escher, Bach: an Eternal Golden Braid*的中文译本)：递归在音乐、绘图、数学、物理中的体现。
+
+
+
+2025.7.10
+
+学习 CSAPP - malloc lab
+
+- Implemented the mechanism of searching for freelist, allocating a free block given an appropriate freelist head ndoe, splitting a large chunk into an allocated one and a free one.
+- Solved the circular dependency issue by  refactoring the function that directly adds a new top level block node.
+- Fixed the error during fetching the block size and flag from the block header/footer.
+
+阅读
+
+- 《早安，怪物》：回顾Madeline经历的创伤和治疗。
+
+创作
+
+- 梳理回顾我近期尝试与无意识沟通的努力。
+
+开心感激
+
+- 晚上重温经典曲目，被旋律和歌词打动哭了 “愿这世界如童话，抱着想象实现它。就凭摘星的手臂，为地球每夜放烟花。就算世界无童话，放下包袱完成它。”
+- 在网上学习了羽毛球的4种应对不同场合的后场正手进攻步伐，系统学习实战的感觉太棒了！
+
+
+
 2025.7.9
 
 学习 CSAPP - dynamic storage allocation
@@ -36,8 +120,6 @@
 
 - 雷暴大雨，让我感到很舒适很开心，下雨天总能给我带来灵性。
 - 晚上睡觉前和老妈在客厅电视上看一期介绍浙江跳跳鱼和福建坛紫菜的饮食节目，很幸福的亲子时光。
-
-
 
 
 
