@@ -1,5 +1,30 @@
 ## 2025年6月
 
+2025.7.15
+
+学习 CS144 check3
+
+- Implemented the `push` and `receive`  functions of the `TCPSender`, and was able to pass certain tests.
+- I struggled with the fact that the SYN and FIN flags in the TCP message don't show up in the payload but still count as message bytes. My `receive` function is flawed because it assumes it should only remove one message but in fact the acknowledgment message from the TCP receiver might ack a bunch of messages all at once, and thus I would need to introduce a while loop.
+
+阅读
+
+- 《The Push》by Tommy Caldwell: I read how Tommy met Jim Collins, got divorced with his partner Beth.
+  -  Jim (my personal hero, who also used to be a great climber, also raised in Colorado) is naturally curious about everything and started doing business research, and I'm surprised that Tommy got so focused on climbing that he basically didn't think about anything else - like connecting different disciplines, learning from different inspiring people, reflecting on his own target setting and technique growth. He was so vulnerable and suffered a lot at his marriage. I think that's because [1] he didn't learn how to properly express ideas and feelings in intimate relationship; [2] he basically didn't have any close friend except Beth; [3] he didn't seek help, feedback and support from others; [4] he was too naively optimistic to think that the problem would **soon be gone** and didn't have the courage to face the brutal truth that there were serious problems; [5] I suspected that he didn't do much reading daily and didn't learn outside of climbing.
+- 《大萧条》by Ben Bernanke (*Essays on the Great Depression*的中文译本)：读了大萧条期间的就业、每周工作小时数和收入的计量经济学论文，我发现我对这样简单的线性计量模型和天真的模型假设感到惊讶，现实世界是如此复杂（显然各个因素都是相互交互的，并且无差异效用曲线根本不存在，完全无视了人类心理学），我发自内心地觉得这所谓模型和研究只是天真幼稚的自娱自乐罢了，但是实际上Bernanke作为美联储主席对应对2008年金融危机做出了很大贡献，我还未能联系起来他是怎么做到的。
+
+开心感激
+
+- 和爸妈一起看了纪录片《猎捕》 第二集，介绍北极圈生物的捕食——北极熊捕食海豹，北极狼捕食北极兔和麝牛，北极狐捕食崖海鸦。非常精彩！我看到了动物们如何在生存条件最恶劣的地区寻求生机，它们生存的模式和烦恼，和人类是如此的不同，我学到了许多。
+
+
+
+2025.7.14
+
+阅读
+
+- 《最好的告别》by Atul Gawande (*Being Mortal: Medicine and What Matters in the End*的中文译本): 介绍了大多数人习惯让老年人在养老院或者治疗室度过。
+
 
 
 ### week 28
