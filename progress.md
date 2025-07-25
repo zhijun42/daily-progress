@@ -1,5 +1,131 @@
 ## 2025年7月
 
+7.24
+
+学习 CSAPP
+
+- Read the buffered and unbuffered versions of the robust I/O API and got better understanding. Read through the full list of networking syscalls during `strace -e trace=network curl -v http://...` to gain more fluency in networking.
+- Finished the part 1 of proxy lab by setting up the proxy server and I was able to run `curl --proxy http://localhost:15214 -v http://localhost:15213/home.html` to fetch the data I need.
+
+阅读
+
+- 《Useful, Not True》 by Derek Sivers: 一个观点、评价、理念等是否正确并不重要，它取决于语境中具体人物的成长环境、视角和主观感知，生活中的绝大多数事物（甚至包括一些科学观点）都是主观的。我们不必要在乎是否正确，只需要在乎它们是否对我们有帮助即可。
+
+
+
+7.23
+
+学习 
+
+- CSAPP
+  - Read through the source code of tiny web server in the  proxy lab and got more familia with socket programing APIs.
+- CS144
+  - Figured out how the bidirectional stream copy works, which consists of 4 different listening events: STDIN -> outbound bytestream -> `socket.write()` and `socket.read()` -> inbound bytestream -> STDOUT.
+  - Once again learned what's lvalue/rvalue in C++ and that `std::move` produces a rvalue. Also learned about 4 kinds of object type casting.
+
+阅读
+
+- 《成长的边界》：更多的跨领域优质人类案例分享。
+
+开心感激
+
+- 晚上爸妈分享回顾了他们小时候和青年时代的生活艰辛，一罐萝卜干要吃一整周，除了粥以外没有任何的食物，在冬天甚至要面临没水喝的苦境。难以想象他们究竟是怎么顽强地存活下来的。
+
+
+
+2025.7.22
+
+学习
+
+- Learn `poll` system call and its role in event-driven programing.
+- Read other students' design of the malloc allocator and also briefly looked at the GNU malloc.
+
+阅读
+
+- 《最好的告别》：见到了更人性化的养老院设计——让老年人们像是室友般共同生活在同一间公寓里，彼此都有各自的独立房间，房间里有电视，大家可以按照自己的喜好来作息。
+
+找工
+
+- 逛了上海蚂蚁集团近一个月的所有相关岗位，大致可以划分为如下几个我可以尝试的方向：存储 (RocksDB, Hbase, Raft, etcd, Redis); 云原生 (Kubernetes, CRD operator, Terraform, AWS, Golang);  数据仓库 (Spark, Flink, Dimensional Modeling, ETL); 计算引擎 (Clickhouse, Doris, C++); 后端开发 (Java, Sprintboot, Kafka, Redis, Middleware). 我目前最渴望做的仍旧是存储/数据库开发方向，但也并非顽固不变，能接触到infra的后端开发也是可以考虑的。
+
+开心感激：
+
+- 在网上读到了优秀[本科生蔡思涤](https://littlecsd.net/)的技术博客记录分享了CSAPP的学习以及其他内容，受到了很强烈的冲击，感谢他的优质内容予以我痛苦让我清醒过来。
+
+
+
+2025.7.21
+
+学习
+
+- Learned pthreads API like `pthread_create`, `pthread_join`, etc with great example in man7 org. I notice that I've seen this before in CSAPP but I need hands-on coding to get trully familiar. 
+- Learned C++ lambda with example in CS144 bidirectional stream copy. Learned more about `size_t`.
+
+阅读
+
+- 《最好的告别》：Assisted Living养老院模式的后期失败；Bill Thomas在疗养院中引进猫狗鸟等动物帮助老年人们对抗三大瘟疫：厌倦感、孤独感和无助感
+
+
+
+### week 29
+
+
+
+2025.7.18
+
+学习 CSAPP malloc lab
+
+- Finished implementing `realloc` . I tried to handle the access pattern to achieve good utilization performance but again I realized that I can't really beat every access pattern.
+- Fixed two bugs
+  - Some free blocks ended up not belonging to any freelist. Turns out I didn't properly release a free block before using it because of my poor design of functions' interfaces. I didn't distinguish helper functions, chain functions (function B must be called after function A), and entrypoint (public) functions in my code.
+  - The function to find the target freelist is too overloaded, shared by different logic.
+
+阅读
+
+- 《The Push》: Tommy met Becca, his future wife, and Kevin, his future climbing partner on the El Cap.
+
+开心感激
+
+- 去看了今天上映的《罗小黑战记2》大电影，期待了许久，虽然不及预期，但还是很感激。
+
+
+
+2025.7.17
+
+学习 CSAPP malloc lab
+
+- Introduced factory meta nodes for making more meta nodes and freelist heads to further improve space utilization. Automatically remove all empty freelists except the factory. Improved the coalescing logic by avoiding having to add a new block to freelist and then immediately remove it.
+- Fixed three bugs: I should always wipe out the payload before releasing a free block; I should make `mm_init` function idempotent so that it can be called multiple times through the lifecycle of the program; I mistook size class as block size but it's actually payload size - I added more comments and better naming to address the issue.
+- Achieved pretty good performance (91% utilization and 100% throughput). I tried to further improve utilization by introducing randomness into the number of bytes to extend the heap when requesting more memory, but I realized that I can't really improve consistently any more because at the end of the day the utilization depends on the usuage pattern and downstream users can always devise a pattern to beat my design.
+
+创作
+
+- 《罗小黑战记》是我很喜欢的国产动漫，给我带来过很多的治愈、抚慰和支持，我写了篇《写在罗小黑2上映前》搜集了剧集中的美好瞬间。
+
+开心感激
+
+- 我写的malloc分配器的性能不错！
+- 和很要好但已经一年没联系的朋友一翔catch up生活的近况, 感到很幸福。
+
+
+
+2025.7.16
+
+学习
+
+- CS144 check3
+  - Fixed a lot of bugs: `TCPSender::push` should respect the window size and current availability, it should also continue sending messages until either there's no data left in the upstream application or no room left in the downstream TCP receiver; `TCPSender::receive` should have the similar loop to continue acknowledging outstanding messages until the latest ack number isn't enough to cover the message;  `TCPSender::retransmit` shouldn't run when the timer is not running (no outstanding messages); properly add SYN and FIN flags by introducing status UNSENT/SENT/RECEIVED; only reset the timer when there's new message acknowledged (not all ACK is meaningful).
+  - Handled a few special cases: window size is 0 (don't add backoff to the timer); retransmit a FIN flag only message.
+  - Traced how strings are moved along: `ByteStreamReader::peek` returns a `string_view` and the `TCPSenderMessage.payload` is `string` so it does really matter when I pop the buffer in the `ByteStream` to avoid use-after-free.
+- CSAPP malloc lab
+  - Observed the logs of handling large batches of memory requests and noticed a lot of the freelists in my design are empty and thus wasting space and time (making traversing the linked list much slower).
+
+开心感激
+
+- 我一直以来都是穿篮球鞋去打羽毛球，今天购买了专业羽毛球鞋Victor S82三代，很明显地感受到脚下步伐轻盈了许多，有了更多的支撑，很开心！
+
+
+
 2025.7.15
 
 学习 CS144 check3
