@@ -1,4 +1,106 @@
+## 2025年8月
+
+8.10 周日
+
+学习
+
+- Learned about Linux cgroup, systemd and how Docker uses them.
+- Read 小红书 tech blogs on how to build cloud-native infrastructure.
+- Briefly read RocksDB's document on Column Family.
+
+阅读
+
+- 《Show Your Work》by Austin Kleon: 尽可能多地在互联网上分享自己的日常项目、进展、思考、成果和失败，战胜完美主义。
+
+创作
+
+- 完成了短文《Switch体感游戏是很棒的启蒙教育》的创作，记录了我对于表妹在家里玩Switch游戏的观察和思考。
+
+开心感激
+
+- 对浏览器的收藏夹进行了不少整理，迈出了建立秩序的重要一步。我早就意识到了大量囤积任务并且每天都一动不动会对我的精神健康带来负面影响，给我一种生活停滞不前、一成不变的压抑感，我会解决这个问题的！
+- 综合时长久违地恢复到了9个小时的水平，今天过得很充实！
+- 我的行动力很强，吃早餐的时候想到了写作素材，中午就立刻着手写作并发布了。
+- 看了演唱会现场视频 Luke Combs & Alex Warren - Ordinary (Live at Lollapalooza) 被触动落泪，感谢音乐让这个世界更美好。
+
+
+
 ## 2025年7月
+
+7.30
+
+开心感激
+
+- 探索出了在电脑上进行语言输入文字的模式，感觉具有非常大的潜力！我很期待！
+
+
+
+7.29
+
+学习
+
+- Sorted out the design of components in CS144: `TCPSender` and `TCPReceiver` make up the `TCPPeer`, which gets initialized inside `TCPMinnowSocket` , which combines with `TCPOverIPv4OverTunFdAdapter` to form the `TCPOverIPv4MinnowSocket`. Once tricky part to understanding the full design is we need to realize that a connected machine is both a sender and receiver, so both `TCPSender::receive` and `TCPReceiver::receive` need to run when receiving an incoming packet. This duality can get pretty confusing.
+- Learned TunTap network interfaces and how they help bypass the kernel's IP/TCP stack and use my own TCP implementation, but I haven't fully figured out the counterpart to the socket APIs `listen`, `accept` and `connect`. Also learned how to unpack an IP packet to examine the TCP packet inside.
+- Learned how to use macro to create a customized debug logger in C++ to print out the current timestamp and caller function name. The long macro looks a bit ugly but I'm getting used to it.
+
+阅读
+
+- 《*Tools of Titans*》：Instead of trying to be the best in the world at a certain area, an easier approach is become top 25% in 2 to 3 areas and then find the unique combination/path of these areas.
+
+ 开心感激
+
+- 感谢羽毛球教练对我保持耐心，虽然我们的表达方式和说话偏好有着不小区别，但是我意识到我不必要太在乎这个差别，而是要尽可能地从对方身上学到好的东西。另外我又一次认识到了自己过于娇惯，练习后场高远球搭配前场网前推球很容易就感到疲惫和心肺功能跟不上，匆忙结束后进行大腿拉伸时又觉得实在太痛了根本受不了，没有一丁点儿咬牙坚持的韧性，我发现这和我在日常生活中低强度学习和对待自己过于轻松随意，其实是一脉相承的行为模式。我需要改变。
+
+
+
+7.28
+
+学习
+
+- Learned the CS144's design of `TCPPeer::receive` and figured out the details of all 3 events TCPPeer will listen to. Drew a diagram to make it easier to follow the flow. Learned more about system's `POLLIN`/`POLLOUT`.
+- Learned RocksDB's `Status` design and a few simple unit tests in `db/db_test.cc`.
+
+阅读
+
+- 《*Tools of Titans*》：Tim Ferriss decided to create his own two-year MBA program by spending \$120K to invest 6 to 12 startups. Scott Adams shares the difference between systems and goals.
+
+开心感激
+
+- 给爸妈买了一床清凉散热的床垫，还各买了一只符合人体工学的枕头，我感觉很满足。
+- 上午读过书之后开始立刻实践书中的理念，在草稿本上写下了15遍 “我会打造出顶尖的个人系统”，希望能借此强化内心信念。
+
+
+
+### week 30
+
+
+
+7.26
+
+学习
+
+- Learned more basics about C++: universal referrencing; keywords `requires`, `constexpr`, `default`, `delete`, `decltype`; examples where implicit type casting causes problem.
+- Read networking RFC 7234 on caching and understood how cache freshness is achieved.
+- Learned why separating `listen` and `accept` as two syscalls.
+- Used `tcpdump` to capture some real-world packets to examine the content bytes to understand the IPv4 datagram heade, TCP header and the payload.
+
+阅读
+
+- 《*Tools of Titans*》 by Tim Ferriss: 本书的意义和使用方案，清晨写journal的意义，对Reid Hoffman和Peter Thiel的采访提炼。
+
+
+
+7.25
+
+学习
+
+- Learned thread pool and made my CSAPP proxy server able to handle concurrent requests.
+
+阅读
+
+- 《仿制药的真相》by Katherine Eban (*Bottle of Lies: The Inside Story of the Generic Drug Boom*的中文版) 开启阅读。
+
+
 
 7.24
 
@@ -159,7 +261,7 @@
 
 相比之下，本周更为重大的错误是，我**又一次地**只进行单一学习活动，我连续多日专注沉浸地投入于malloc lab之中，完全没有接触networking内容。我生活中只剩下computer systems了，哪怕写lab时十分兴奋亢奋，也不足以应对傍晚结束后的疲惫和精力垮掉。单一任务无论如何都是行不通的啊！我的生活近乎停滞（这个关键词很熟悉吧，我这些年来在美国期间常常有这种感受啊）了，只剩下这一个单一启动点（也称之为瓶颈）了，CS144 checkpoint 3已经拖了几乎一周，整理回顾Notion文档这项任务也是，『晚上写report回顾今日』这项目标也因为自己过于疲惫且晚上没有时间了而被完全搁置了，连前些天在坚持做的拉肩膀康复也被完全遗忘了，可恶啊！又陷入到了那种“日子一天天过去，感觉自己浑浑噩噩地用机械直觉来写代码”的糟糕状态。这样to-do list跟从前那种「不用任何当日安排，每天只管看准一个任务使劲莽，把所有时间都投进去就行，拆解milestone和预估时长安排项目啥的我不管我不会」的老旧模式在本质上没有区别！虽然malloc的确很有挑战很有意思，但not special enough to break the rules! 我完全高估了这项任务的价值。
 
-看来我还是没能把「绝对禁止一天只做一件主任务」的新认知给贯彻落实到底。
+看来我还是没能把**「绝对禁止一天只做一件主任务」**的新认知给贯彻落实到底。
 
 其实我现在这种渴望尽快把malloc给做完的心态，和当初在美国工作时每天盼着把某个project尽快完成是完全一样的，整个人变得狭隘，关注点变窄，日子重复单调枯燥损害大脑和无意识，感受不到那种生活丰富多彩、头脑活跃时的持久幸福。我知道我在沉浸写lab的时候希望能够再多些一会儿，但是我现在明白了，我必须自己强制限时才行。不用担心自己的专注和热情散掉了浪费了，切换到Networking任务之后，也能够迅速地找到快感（如果没有，要么是因为自己浮躁了，要么是因为自己挑选的学习着手点不对），所以啊，我这是通过切换项目来保持自己的健康愉悦和专注啊！写了六个小时的malloc之后我都想不起来自己做过了什么，而如果malloc/networking分别做三个小时，那么我可以清楚地回溯追溯出思考的框架和逻辑链路，清晰地知道自己在着手哪一步，哪个环节可以改善，并且在闲暇时间里大脑还会自动加工进行沉淀提炼，而不会像现在这样直接抽离出来彻底罢工不思考了。
 
@@ -1381,4 +1483,6 @@ I delieverd the article on assembly and registers, as I promised!
 
 
 ## End of file
+
+
 
