@@ -1,8 +1,117 @@
 ## 2025年8月
 
+8.22 (周五)
+
+学习
+
+- Networking: Learned the network interfaces on my Macbook. Played with the interface awdl0 (Apple Wireless Direct Link) and saw how AirDrop brings traffic, and also saw Spotify used this interface to send mDNS queries.
+  - Tried to sniff packets from Spotify servers but failed due to the complexity of having VPN running and not familiar enough with all these networking stuff.
+- CMU-DB course: Disk storage layout and pages. Played with SQLite on MacOS.
+
+阅读
+
+- 《人类简史》：人类的《汉谟拉比法典》和《独立宣言》是历史上两次典型的大规模集体想象；农业革命的枷锁是绝大多数农民需要养活一小部分的精英。
+
+创作
+
+- 完成创作《攀岩其实是在想方设法地玩儿》并发布，介绍了我对攀岩这项活动的新理解感悟。
+
+
+
+8.21 (周四)
+
+学习
+
+- Networking: Learned ethernet, switch vs router, VLAN. Thought about unifying all types of link-layer frames.
+
+阅读
+
+- 《人类简史》：智人摧毁了澳大利亚以及绝大多数陆地上的大型动物；农业革命是一场骗局。
+
+
+
+8.20 (周三)
+
+学习
+
+- Read RocksDB PRs
+  - Add configurable IO coalescing threshold
+  - Add option to print all meta blocks when dumping SST
+
+阅读
+
+- 《人类简史》
+
+创作
+
+- 灵感爆发，非常高强度地写作，投入了4小时40分，发布了《过去五年的学习时长统计令我心痛》和《关于时间日记和时间统计的区别》这两篇高质量文章。
+
+开心感激
+
+- 第一次感受到了在写作平台上大量收获点赞/收藏并且大幅度增加follower的体验，正向反馈很强，与此同时我还保持着高标准，没有为试图取悦读者而妥协。
+
+
+
+8.19 (周二)
+
+学习
+
+- Started reading RocksDB's skiplist implementation of the memtable.
+
+阅读
+
+- 《人类简史》
+
+
+
+
+
+8.14
+
+学习
+
+- Learned basics of relational databases' isolation: read uncommitted, read committed, repeatable read, and serializable.
+
+阅读
+
+- 《Outliers》：关于IQ测试，以及Christopher Langan的故事
+
+
+
+8.13
+
+阅读
+
+- 《Outliers》：More stories.
+
+创作
+
+- 这一天进行了大量的写作，发布了两篇文章《尝试从演唱会中寻找戒断反应》和《过去五年的阅读时长统计》，以及发布朋友圈分享了自己决定要长期坚持公开写作，这是我一直以来都渴望去做的事情，现在终于下定决心了。
+
+
+
+8.12
+
+学习
+
+- Realized that I had been using Intel Homebrew with a bunch of x86-64 files on my machine. Did a big overhaul.
+- Continued reading RocksDB: function  `DBImpl::WriteToWAL`, `log_writer.cc`, read the content of local log files.
+
+阅读
+
+- 《Outliers》by Malcolm Gladwell：介绍了加拿大顶尖hocky运动员的出生日期和选拔日期背后的关联，以及Bill Joy和Bill Gates的成长环境与幸运。
+
+
+
 8.11 周一
 
 学习
+
+- Continued reading RocksDB: I should have used CMake to build the project instead of legacy makefiles.
+
+阅读
+
+- 《Show Your Work》读完了，并没有太多深刻感悟，大概是因为我早已经十分认同了。
 
 
 
