@@ -1,4 +1,65 @@
+学习
+
+- Topic
+  - Description
+  - Why designed/implemented this way
+  - Tradeoff/alternative
+
+
+
+## 2025年9月
+
+9.8 (周一)
+
+学习 Redis
+
+- How does the sentinel get updated info of the primary/replica servers it's monitoring?
+
+  - Sentinel sends command `INFO` to both the primary and replica servers, during its periodic loop when an server instance is “due” (by default it's 10s, but under certain cases, liker a replica is objectively down, we will send command more often, by every 1s). The full call path is `serverCron` in the server.c file, which calls `sentinelTimer` when `server.sentinel_mode` is turned on, then calls function `sentinelHandleDictOfRedisInstances`, which runs on all 3 types of primary/replica/sentinel instances. Inside the function, `sentinelHandleRedisInstance` is run on each individual instance, which calls `sentinelSendPeriodicCommands` (this is where the routine period commands like `PING`, `INFO`, `PUBLISH` are sent) and `sentinelCheckSubjectivelyDown`.
+
+- How does sentinel discover replicas?
+
+  - As mentioned above, sentinel sends periodic `INFO` comamnd and then parse the `replication` section to learn about replicas. The output text looks like this:
+
+    ```
+    role:master
+    connected_slaves:1
+    slave0:ip=127.0.0.1,port=6381,state=online,offset=12345,lag=1
+    ```
+
+    And then it will print a log `+slave slave 127.0.0.1:6381 127.0.0.1 6381 @ mymaster 127.0.0.1 6379`. 
+    
+    Notice that sentinel will also discover other sentinels.
+
+- What's the difference between `master_replid` and `master_replid2`?
+
+  - These two replicaition IDs are used in Redis partial sync. `master_replid` is the current replication ID, while  `master_replid2` is the previous ID kept around to handle those replicas slightly lagged behind in sync. Every time the primary updates its replication ID, the current `master_replid` will be moved into `master_replid2`, and `second_replid_offset` is set to the primary's current replication offset (which will later be used to compare against `replica_replid_offset` to check if the replica is close enough to the primary to allow partial sync).
+  - In theory, we might even keep more historical IDs like  `master_replid3`, `master_replid4`, etc., but such design will complicate the overall logic a lot without much benefit.
+
+
+
 ## 2025年8月
+
+8.31
+
+学习
+
+- Learned how Redis inserts a new key-value pair of strings into memory.
+
+  - After the client sends the key-value pair to Redis server, the key and the value are stored as `sds` (simple dynamic string) objects, which are kinda similar to C style null-terminated strings but actually are *length-prefixed* buffers that also keep a trailing `0x0` for C-API compatibility. There're different types of `sds` and headers, and in my case I use `SDS_TYPE_8` since the key-value isn't huge in size.
+
+    - ```c
+      struct __attribute__ ((__packed__)) sdshdr8 {
+          uint8_t len; /* used */
+          uint8_t alloc; /* excluding the header and null terminator */
+          unsigned char flags; /* 3 lsb of type, 5 unused bits */
+          char buf[];
+      };
+      ```
+
+  - During insertion, the function `kvobjCreateEmbedString` calculates the required size of both the key and value by adding up the size of header (`sdshdr8` in my case), payload and 1 byte of null terminator. Then `malloc` (could be either glibc malloc or  jemalloc) is called to assign memory to the new `robj`. Then `memcpy` is called to copy the key and value to the newly assigned position and now we have a complete `robj`. Finally, this new node is linked to the dict of the database by using the `dictEntryLink` object previously retrieved by doing search in `dbFindByLink` (the same function used to look up the `setCommand` object prior to processing the command).
+
+
 
 8.30
 
