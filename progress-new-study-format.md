@@ -9,6 +9,15 @@
 
 ## 2025年9月
 
+9.16 (周二)
+
+学习 Redis
+
+- The overall testing framework is designed around one single primary-replica cluster. The file `tests/instances.tcl` contains a lot of utilities around. During testing setup, we usually run `spawn_instance` to spin up sentinel and redis servers, and then add them to global variables `::sentinel_instances` and `::redis_instances`. Relevant helper functions like `foreach_sentinel_id` , `foreach_redis_id`, `R` (send command to an instance) etc, rely on these two states. Even the final `cleanup` step relies on this design to kill all running processes and remove temp directories.
+  - I'm trying to add a guardrail to verify the replication ID before promoting a replica to become the new primary. Adding this guardrail is straightforward, but adding test would require spinning up two primary-replica clusters, which is nearly impossible to do in the current testing framework and would likely require much refactoring (probably not worthwhile).
+
+
+
 9.8 (周一)
 
 学习 Redis
