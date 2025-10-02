@@ -5,9 +5,56 @@
   - Why designed/implemented this way
   - Tradeoff/alternative
 
+## 2025年10月
+
+10.1 (周三)
+
+Working on Redis sentinel
+
+- I solved the sentinel sticky belief issue (sentinels still believe server 30006 is a slave of mymaster 30000 even after I have the server successfully sync with the second master 30005) by running `SENTINEL RESET "mymaster"` command, which would remove server 30006 as slave and only add back the four servers 30001 ~ 30004.
+- I ran into a data race issue in 02-slaves-reconf.tcl test where a slave now has a new master (we can tell from the INFO output) but the sentinel still believe it's following the old master. The reason is: the `+slave-reconf-sent` and `+slave-reconf-inprog` events proceeded, but the  `+slave-reconf-done` event was never reached because the new master went down (as requested by the test suite) too quickly and the slave immediately marks `master_link_status` as DOWN according to the its INFO command output. The sentinel should have refreshed INFO more frequently so I did that to fix the issue, but I'm not sure if the data race is eliminated for all devices and environments.
+- I also ran into flakiness in my 04-slave-selection.tcl test case "Cannot failover when there's no good slave". The expected correct ordering is the following: [2]. the slave in the second cluster updates replid after following the master in the first cluster; [3]. sentinels monitoring this slave instance notices the new replid 3. manual failover starts. If step 3 happens before 2, this test case would fail. The only way to eliminate the data race is to wait until the sentinels update the replication ID of the server 30006 instance of the second cluster (notice that now each sentinels stores server 30006 twice in their memory because they see this server in two clusters) to match with the first cluster before starting failover (notice that it's not enough for the server 30006 to sync replication ID, we have to strictly wait until the sentinels see such change - remember that the sentinels are always lagged behind the reality, by design). Unfortunately I don't know how to achieve this in the given design of sentinel commands, unless I add a new command/functionality.
+- I ran into another raace in my 04-slave-selection.tcl test "Slave selection works when the master reboots immediately" where the slave server 30006 couldn't be selected after master 30005 rebooted and shut down. I didn't figure out why yet.
+- I enriched the state flag `is_relevant_to_master` from binary to 3 values: REPLID_UNVERIFIED, REPLID_RELEVANT and REPLID_NOT_RELEVANT. And when function `sentinelSelectSlave` runs and sees this field as unintialized, it will compute the flag on the fly. It's possible that the sentinel has just detected the slave instance and hasn't got the chance to verify its replication ID before the failover process starts.
+
+
+
 
 
 ## 2025年9月
+
+9.30 (周二)
+
+Working on Redis sentinel
+
+- My guardrail logic caused flakiness in 00-base.tcl test. The master would go down and reboot immediately, and repeat such process multiple times, getting assigned a completely new replid, different from slaves's. GPT's previous strategy of keeping cached replid in the sentinel states doesn't work well because I think it's not possible to properly decide when changing the cached replid field. Apparently we can't update it every time the master has a new replid. We might consider updating it sometime (e.g. 10s) after the master finishes reboot, but the exact logic feels complicated and gives me headaches. I came up with a new idea: stop using cached replid and add a new `is_relevant` field to the slave instance state. This field gets assigned new value every time the sentinel receives INFO from the slave, but this flag won't change to 0 immediately when the sentinel detects a mismatch between the master and the slave - instead, the sentinel would wait some time if the master just rebooted.
+- The 00-base.tcl test not only crashes the master multiple times, but also crashes the majority of the sentinel instances, and thus wipes out all the INFO memories of these sentinels. I had been struggling trying to fix the edge cases caused by such complicated situation, and then I realized that I shouldn't perform so such testing in the simple 00-base.tcl file. Each test case is meant to be simple and specific to certain source code (a function, a workflow, etc) but I had been actually trying to create a comprehensive test on the overall sentinel design. I should specifically test my slave selection guardrail logic in 04-slave-selection.tcl file.
+- In my 04-slave-selection.tcl test, I successfully set up two cluster. I manually ask the slave 30006 in the second cluster to follow the master 30000 in the first cluster (so that I can test now it's no longer a proper candidate when the second master fails over), and then ask the slave to follow the second master 30005 back (this time the failover should succeed). This works well and I intend to add more tests (specifically, the edge cases from 00-base.tcl earlier where the master goes down and reboots immediately), but then I find out sentinels believe the new master 30006 in the second cluster still follow the master 30000 and they detect 30006 believes it's a master (which is true), so sentinels send a `slaveof` command to change 30006 back to slave to follow 30000. Now everything is just messed up. The underlying problem is that once the sentinel finds a redis instance is a replica of another instance, it will hold on to such belief forever until the master instance in is reset due to failover process. I need to figure out a way to not mess up two clusters.
+
+(even though I intend to temporarily )
+
+
+
+but during this period the slaves can't partially sync with the master due to replid mismatch
+
+
+
+
+
+9.24 (周三)
+
+Working on Redis sentinel
+
+- I was able to refactor the current sentinel test design to allow spinning up two master-slave cluster. Previously there has been only one master "mymaster" with 4 slaves.
+  - Here is my failed attempt: Edit `tests/sentinel/run.tcl` to spawn 2 more instances, and make one of them become a separate new master via `slaveof no one` command and make the other one the slave of it. This didn't work because during `init-tests.tcl`, function  `create_redis_master_slave_cluster`  will be called to turn all 7 redis server instances into a single cluster. Even if I tried to send manual `slaveof` command later, sentinel monitoring the cluster would detech such divergence and revert my instances back to slaves.
+  - Another failed attempt: This time I made use of the given 5 instances and stole 2 of them to become the new cluster via manual `slaveof` commands. This also wouldn't work due to sentinel monitoring and correcting.
+  - Here is the new/correct approach: I refactor the `init-tests.tcl` file to move all operations into TCL functions because they would need to be called twice - once for "mymaster", second for the new master. Essentially, we can treat it like the original `init-tests.tcl` gets called twice. I define a global flag `set ::setup_second_master 1` in my test file `04-slave-selection.tcl` to control this behavior.
+- Now I have a new working cluster of a new master with a slave. I convert the slave to follow the default "mymaster" instead, so that it will have new replication ID and I can verify my guardrail logic of checking replication ID before promoting slaves. Once this is done, I revert my slave back to follow its original master, and this time the failover will succeed because the replication ID matches. This is how I implement the testing logic.
+- My guardrail logic broke the existing `12-master-reboot.tcl` test because when a master goes down and reboots immediately (carries a new replid) to load data, all slaves can't talk to it to update their replid and thus can't be promoted as expected, failing the test. Initially I was hoping that once the master finishes loading, all slaves can now sync to get new replid and thus be selected as new master, but I didn't realize that once the master gets back fully functioning, it's no longer objectively down from sentinels' perspective and thus failover isn't needed any more.
+
+
+
+
 
 9.16 (周二)
 
