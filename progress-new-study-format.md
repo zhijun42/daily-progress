@@ -5,7 +5,131 @@
   - Why designed/implemented this way
   - Tradeoff/alternative
 
+
+
 ## 2025年10月
+
+10.16 (周四)
+
+Last month, I learned how Redis inserts a new key-value pair of strings into the database. Today I learned how Valkey does that, and it's different from Redis because Valkey implemented a new internal structure `hashtable` in late 2024:
+
+```c
+struct hashtable {
+    hashtableType *type;
+    ssize_t rehash_idx;        /* -1 = rehashing not in progress. */
+    bucket *tables[2];         /* 0 = main table, 1 = rehashing target.  */
+    size_t used[2];            /* Number of entries in each table. */
+    int8_t bucket_exp[2];      /* Exponent for num buckets (num = 1 << exp). */
+    int16_t pause_rehash;      /* Non-zero = rehashing is paused */
+    int16_t pause_auto_shrink; /* Non-zero = automatic resizing disallowed. */
+    size_t child_buckets[2];   /* Number of allocated child buckets. */
+    void *metadata[];
+};
+```
+
+while Redis has been using the `dict` structure:
+
+```c
+struct dict {
+    dictType *type;
+    dictEntry **ht_table[2];
+    unsigned long ht_used[2];
+    long rehashidx; /* rehashing not in progress if rehashidx == -1 */
+    /* Keep small vars at end for optimal (minimal) struct padding */
+    unsigned pauserehash : 15; /* If >0 rehashing is paused */
+    unsigned useStoredKeyApi : 1; /* See comment of storedHashFunction above */
+    signed char ht_size_exp[2]; /* exponent of size. (size = 1<<exp) */
+    int16_t pauseAutoResize;  /* If >0 automatic resizing is disallowed (<0 indicates coding error) */
+    void *metadata[];
+};
+
+struct dictEntry {
+    struct dictEntry *next;  /* Must be first */
+    void *key;               /* Must be second */
+    union {
+        void *val;
+        uint64_t u64;
+        int64_t s64;
+        double d;
+    } v;
+};
+```
+
+Essentially these two are quite similar, just using different mechanisms to implement a hashtable, although I don't understand both enough to talk about the tradeoffs yet.
+
+In Valeky, both setting an exisiting key and adding a new key will call the function `void setKey(client *c, serverDb *db, robj *key, robj **valref, int flags)`, which then calls
+
+- `static void dbSetValue(serverDb *db, robj *key, robj **valref, int overwrite, void **oldref)`
+- or `static void dbAddInternal(serverDb *db, robj *key, robj **valref, int update_if_existing)`.
+
+correspondingly. Eventually the new value (an `robj` ) object will be created, with the key (if it's short enough) embedded into it. For exaxmple, the object with key "short-key-01" and value "another-kinda-long-value" has these fields:
+
+```
+ type = {unsigned int:4} 0 [0x0]
+ encoding = {unsigned int:4} 8 [0x8]
+ lru = {unsigned int:24} 15856960 [0xf1f540]
+ hasexpire = {unsigned int:1} 0 [0x0]
+ hasembkey = {unsigned int:1} 1 [0x1]
+ refcount = {unsigned int:30} 1 [0x1]
+ ptr = {void *} 0x60000151d162
+```
+
+and looks like this in memory:
+
+```
+   80 40 f5 f1   06 00 00 00   │ ·@······ │
+   62 d1 51 01   00 60 00 00   │ b·Q··`·· │
+   01 60 73 68   6f 72 74 2d   │ ·`short- │
+   6b 65 79 2d   30 31 00 18   │ key-01·· │
+   1d 01 61 6e   6f 74 68 65   │ ··anothe │
+   72 2d 6b 69   6e 64 61 2d   │ r-kinda- │
+   6c 6f 6e 67   2d 76 61 6c   │ long-val │
+   75 65 00 00   00 00 00 00   │ ue······ │
+```
+
+Since the field `hasembkey` is true, the bytes immediately following the object is the key string. And I find a trick to manually access a specific database entry once I'm inside the debugger of a running Valkey server:
+
+```
+(robj *)client->db->keys->hashtables[slot_number]->tables[table_index]->entries[entry_index]
+```
+
+ A `bucket` obejct is the container that eventually stores these `robj` objects. And the functions `dbSetValue` and `dbAddInternal` above are just about searching for a specific bucket and insert position inside it.
+
+
+
+10.15 (周三)
+
+
+
+10.14 (周二)
+
+
+
+10.13 (周一)
+
+Networking
+
+- Learned about TCP end-to-end congestion control where the TCP host doesn't have explicit feedback on the network congestion conditions and can only infer from observing the network behaviors like packet loss/delay/ACK. Each TCP host has a dynamic congestion window that updates frequently, and throughout the TCP connection the gap between the last byte sent and last byte ACK must lie within this window. So, TCP host can change this window size to implicitly change the rate it sends packets into the network, based on the latest congestion conditions. Also learned about the RFC 5681 algorithm which contains 3 parts: slow start, congestion avoidance and fast recovery.
+
+
+
+10.12 (周日)
+
+- Finished writing the article on using `strace` and `tcpdump` to dig into what's behind a simple HTTP GET request. I interpreted all raw bytes in the packets captured by `tcpdump` , which is great for learning IPv4 header (20 bytes), UDP header (8 bytes), TCP header (40 bytes), DNS query response (A records), etc.
+
+
+
+10.10 (周五)
+
+Working on Redis sentinel
+
+- Cleaned up all code changes and finally post the pull request in the Redis repo. Since this issue also exists in Valkey, I also post a PR there, although I just submit the changes of refactoring sentinel test design to allow spinning up two clusters to make it easier for code review. Both PRs have comprehensive descriptions.
+- I looked back at the original Github issue where cluster A changed IP address and later the same IP address got reassigned to cluster B, causing problems. I generally understood the issue but then I started thinking more about the details. I assume all redis servers should each run on a single machine (that is, it won't be like my local development environment where I have multiple redis processes running on different ports on my computer) at the default port 6379. Now after cluster A changed IP, what would the sentinel A do? If it didn't know the new IP of cluster A, it would fail to connect with any server in cluster A and thus believed the master is objectively down and there started a failover, which would fail of course because no slave could be reached, and such failover would keep on going on endless epochs.
+  - I'm not sure if this is what happens. An alternative is that sentinel A actuall knew the new IP address of all servers in cluster A, and yet it still remembered the old IP (I don't know the exact workflow of leading to such situation. If sentinel still members the old IP of the master, it will definitely find it dead and start a failover, like I describe above). Then a slave server in cluster B got reassigned an IP from cluster A, or maybe all servers in cluster B did so.
+  - What I know for sure is that there was a oscillation pattern where two sentinel groups both believe a slave instance belongs to them and thus alternate sending `replicaof` commands to it in `+fix-slave-config` events. I also believe there's an event of `+convert-to-slave` when the sentinel tried to convert the slave that got mistakenly promoted as new master back to slave again. However, I can't put together the full picture of what happened exactly. Perhaps that's okay and I'm just being pedantic trying to figure out all details and steps.
+  - Notice that my pull request will only solve the problem of promoting the wrong candidate slave, but it can't directly address the oscillation pattern, which is due to the flaw in the sentinel design where sentinels can only discover more slave instances, and wouldn't prune any one out.
+
+
 
 10.1 (周三)
 
@@ -30,14 +154,6 @@ Working on Redis sentinel
 - My guardrail logic caused flakiness in 00-base.tcl test. The master would go down and reboot immediately, and repeat such process multiple times, getting assigned a completely new replid, different from slaves's. GPT's previous strategy of keeping cached replid in the sentinel states doesn't work well because I think it's not possible to properly decide when changing the cached replid field. Apparently we can't update it every time the master has a new replid. We might consider updating it sometime (e.g. 10s) after the master finishes reboot, but the exact logic feels complicated and gives me headaches. I came up with a new idea: stop using cached replid and add a new `is_relevant` field to the slave instance state. This field gets assigned new value every time the sentinel receives INFO from the slave, but this flag won't change to 0 immediately when the sentinel detects a mismatch between the master and the slave - instead, the sentinel would wait some time if the master just rebooted.
 - The 00-base.tcl test not only crashes the master multiple times, but also crashes the majority of the sentinel instances, and thus wipes out all the INFO memories of these sentinels. I had been struggling trying to fix the edge cases caused by such complicated situation, and then I realized that I shouldn't perform so such testing in the simple 00-base.tcl file. Each test case is meant to be simple and specific to certain source code (a function, a workflow, etc) but I had been actually trying to create a comprehensive test on the overall sentinel design. I should specifically test my slave selection guardrail logic in 04-slave-selection.tcl file.
 - In my 04-slave-selection.tcl test, I successfully set up two cluster. I manually ask the slave 30006 in the second cluster to follow the master 30000 in the first cluster (so that I can test now it's no longer a proper candidate when the second master fails over), and then ask the slave to follow the second master 30005 back (this time the failover should succeed). This works well and I intend to add more tests (specifically, the edge cases from 00-base.tcl earlier where the master goes down and reboots immediately), but then I find out sentinels believe the new master 30006 in the second cluster still follow the master 30000 and they detect 30006 believes it's a master (which is true), so sentinels send a `slaveof` command to change 30006 back to slave to follow 30000. Now everything is just messed up. The underlying problem is that once the sentinel finds a redis instance is a replica of another instance, it will hold on to such belief forever until the master instance in is reset due to failover process. I need to figure out a way to not mess up two clusters.
-
-(even though I intend to temporarily )
-
-
-
-but during this period the slaves can't partially sync with the master due to replid mismatch
-
-
 
 
 
