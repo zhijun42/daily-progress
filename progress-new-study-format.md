@@ -9,6 +9,20 @@
 
 ## 2025年10月
 
+10.20 (周一)
+
+Reading the Redis cluster spec document
+
+- `MOVED` redirection shows that the specific key is being served at the other node, and then client should update its slot map and go straight to the new node next time (no ASKING needed). `ASK` redirection shows there's ongoing slot migration and the key asked isn't served on this node anymore and the client should talk to the migration destination node to do the operation. Notice that the next time the client makes a new query about the same slot, the query should still go to the source node first because we don't know if the migration is done, and the destination node during resharding will handle a query only if it comes with an `ASKING` command, which proves that the client had already tried talking to the source node.
+- Say we're migrating a slot from source node A to destination node B.
+  - All queries about existing keys are processed by node A.
+    - If the key still exists on node A, the operation will be handled.
+    - If the key doesn't exist on node A, the client will get an `ASK` redirection to have node B handle the query.
+  - All queries about new keys in node A will be prompted to talk to node B via an  `ASK` redirect, so that we won't be creating any new keys in node A and eventually we can finish migrating all keys in the slot to node B.
+  - If there're multiple keys and some keys are in node A while others are in node B, caught in the middle of migration), node B (not sure, perhaps node A) will get generate a `-TRYAGAIN` error.
+
+
+
 10.16 (周四)
 
 Last month, I learned how Redis inserts a new key-value pair of strings into the database. Today I learned how Valkey does that, and it's different from Redis because Valkey implemented a new internal structure `hashtable` in late 2024:
@@ -97,11 +111,25 @@ Since the field `hasembkey` is true, the bytes immediately following the object 
 
 
 
-10.15 (周三)
-
-
-
 10.14 (周二)
+
+I would like to read the TCP module in the Linux source code to better understand how the TCP networking protocol is implemented in real life. I'd like to do this in my IDE with code analysis enabled to facilitate reading the code. At first, I thought the IDE has mainly three components read, write and run the code, but I was wrong because reading and writing the code are the same from the IDE's perspective, because they both require code analysis (find usage/declaration, auto complete, refactoring, etc), which means I would have to do enough configuration to allow my IDE to parse the Linux source code.
+
+There're two options of setting up the project. The first is to set it as a Makefile project, but CLion couldn't build targets successfully (although I'm not entirely sure which specific Makefile target is required, exactly. I tried `prepare` and faield) due to some missing Linux-specific files like `elf.h`. 
+
+The second option is to set it up as a compilation database project, which only requires a `compile_commands.json` file. However, to generate such file, I would still need to build the project (I'm not sure if there's a way to somehow "dry run" the compile commands), which would fail due to the reason above. So I did a hack - I used my AWS EC2 Ubuntu machine to build the source code via `make -j"$(nproc)" compile_commands.json` and then stole the output, as well as some directories (like `arch/x86/`, `net/ipv4` ), otherwise I would fail at missing files like `asm/compiler.h`. failed
+
+Then I needed to manually edit the build flags in each entry in the compile_commands.json file because apparently they are only compatible with the environment on my EC2 and not my MacOS to avoid errors like  `clang: error: unknown argument: '-fno-allow-store-data-races'` and `clang: error: invalid argument 'kernel' to -mcmodel=`. Honetly I don't fully understand this part, becaue according to Jetbrains CLion doc, the IDE just needs to extract all the necessary compiler information, such as include paths and compilation flags, and it shouldn't need to actually run the long `gcc` command. So why should it care about whether a flag is legal? Perhaps it's trying to tell me if I had build my source code the right way. This is where things are tricky - I just intend to **READ the code**, but CLion will try to make all features available, which is not their fault though. 
+
+Eventually I got entries like this in the DB json file, which finally allows me to view the TCP congestion control file `tcp_cong.c` smoothly with code analysis enabled.
+
+```
+{
+  "command": "gcc -Wp,-MMD,net/ipv4/.tcp_cong.o.d -nostdinc -I./arch/x86/include -I./include ... -c -o net/ipv4/tcp_cong.o net/ipv4/tcp_cong.c",
+  "directory": "/Users/zhijunliao/Engineering/reading/c/linux",
+  "file": "/Users/zhijunliao/Engineering/reading/c/linux/net/ipv4/tcp_cong.c"
+},
+```
 
 
 
